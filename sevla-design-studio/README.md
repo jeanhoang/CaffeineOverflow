@@ -1,12 +1,12 @@
 # Sevla Design Studio
 
-A project created with React.
+An ecommerce website created with React.
 
-# List of Technologies Used:
+## List of Technologies Used:
 
-Frontend: [React](https://reactjs.org/)
-Backend: TBD
-Server: [Azure](https://azure.microsoft.com/en-ca/?cdn=disable)
+Frontend: [React](https://reactjs.org/)\
+Backend: TBD\
+Server: [Azure](https://azure.microsoft.com/en-ca/?cdn=disable)\
 
 ## Available Scripts:
 
