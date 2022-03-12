@@ -6,7 +6,7 @@ An ecommerce website created with React.
 
 Frontend: [React](https://reactjs.org/)\
 Backend: TBD\
-Server: [Azure](https://azure.microsoft.com/en-ca/?cdn=disable)\
+Server: [Azure](https://azure.microsoft.com/en-ca/?cdn=disable)
 
 ## Available Scripts:
 
