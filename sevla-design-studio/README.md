@@ -2,13 +2,19 @@
 
 A project created with React.
 
-# List of Technologies used
+# List of Technologies Used:
 
-React [React](https://reactjs.org/)
+Frontend: [React](https://reactjs.org/)
+Backend: TBD
+Server: [Azure](https://azure.microsoft.com/en-ca/?cdn=disable)
 
-## Available Scripts
+## Available Scripts:
 
 In the project directory, you can run:
+
+### `npm install`
+
+This command installs the dependencies listed in 'package.json' to the local 'node_modules' folder.
 
 ### `npm start`
 
