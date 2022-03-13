@@ -2,7 +2,7 @@ import classes from './HeaderCartButton.module.css';
 import cartIcon from '../../assets/cart.png';
 
 const HeaderCartButton = props => {
-  return <button className={classes.button} >
+  return <button className={classes.button} onClick={props.onClick} >
     <span className={classes.icon}>
       <img src={cartIcon} alt='Cart' />
     </span>
