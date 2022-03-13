@@ -2,13 +2,13 @@
 
 An ecommerce website created with React.
 
-## List of Technologies Used:
+## List of Technologies Used
 
 Frontend: [React](https://reactjs.org/)\
-Backend: TBD\
+Backend: [Node.js](https://nodejs.org/en/)\
 Server: [Azure](https://azure.microsoft.com/en-ca/?cdn=disable)
 
-## Available Scripts:
+## Available Scripts
 
 In the project directory, you can run:
 
