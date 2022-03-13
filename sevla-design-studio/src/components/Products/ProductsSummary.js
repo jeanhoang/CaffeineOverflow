@@ -5,7 +5,7 @@ const ProductsSummary = () => {
     <section className={classes.summary}>
       <h2>Customized Products, Delivered To You</h2>
       <p>
-        We At Sevla Studio Offer A Range Of custom items.
+        We Offer A Variety Of Personalized Items
       </p>
     </section>
   );
