@@ -1,3 +1,7 @@
+/*
+* A JavaScript file that stores demo data.
+*/
+
 const ProductData = [
   {
     id: 1,

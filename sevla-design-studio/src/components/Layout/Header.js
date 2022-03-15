@@ -1,11 +1,20 @@
+/*
+* A component that creates the header.
+*/
+
 import { Fragment } from 'react';
+
 import HeaderCartButton from './HeaderCartButton';
 
 import classes from './Header.module.css';
 import backgroundImage from '../../assets/background.png';
 import logoImage from '../../assets/logo.png';
 
+
+// Forwards props for closing the cart modal from inside the App component
 const Header = props => {
+
+  // Returns a header with logo, title, cart button, and background image
   return <Fragment>
     <header className={classes.header}>
       <div className={classes['logo-image']}>
