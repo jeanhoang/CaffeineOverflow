@@ -24,4 +24,13 @@ router.route('/add').post(function (req, res) {
     return res.status(400).json('Error: ' + err);
   });
 });
+router.route('/:username').get(function (req, res) {
+  User.find({
+    username: req.body.username
+  }).then(function (user) {
+    return res.json(user);
+  })["catch"](function (err) {
+    return res.status(400).json('Error: ' + err);
+  });
+});
 module.exports = router;
