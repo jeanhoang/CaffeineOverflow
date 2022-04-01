@@ -27,6 +27,14 @@ const AuthForm = () => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
+    // const user = {
+    //   username:  emailInputRef.current.value,
+    //   password: passwordInputRef.current.value
+    // }
+
+    // console.log(user);
+
+
     // Add validation
 
     setIsLoading(true);
