@@ -1,4 +1,5 @@
 import { useState, useRef, useContext } from 'react';
+import axios from 'axios';
 
 import { useHistory } from 'react-router-dom';
 
@@ -6,9 +7,6 @@ import AuthContext from '../../store/auth-context';
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
-  
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
 
   const authCtx = useContext(AuthContext);
 
@@ -21,75 +19,62 @@ const AuthForm = () => {
     setIsLogin((prevState) => !prevState);
   };
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+
+  const onChangeUsername = (event) => {
+     setUsername(event.target.value);
+  };
+
+  const onChangePassword = (event) => {
+    setPassword(event.target.value);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-
-    // const user = {
-    //   username:  emailInputRef.current.value,
-    //   password: passwordInputRef.current.value
-    // }
-
-    // console.log(user);
-
-
-    // Add validation
+    const user = {
+      username:  username,
+      password: password
+    }
 
     setIsLoading(true);
-    let url;
+
     if (isLogin) {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB9CKq1os8x_AflwKBewArRktTOKsD4G5E';
-    } else {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB9CKq1os8x_AflwKBewArRktTOKsD4G5E';
-    }
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        email: enteredEmail,
-        password: enteredPassword,
-        returnSecureToken: true,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        setIsLoading(false);
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = 'Authentication failed!';
-            // if (data && data.error && data.error.message) {
-            //   errorMessage = data.error.message;
-            // }
-
-            throw new Error(errorMessage);
+      setIsLoading(false);
+      const token = 'abcdef-u';
+      axios.post('http://localhost:5000/users/login', user)
+        .then(res =>  console.log(res.data))
+          .then((data) => {
+            authCtx.login(token);
           });
-        }
-      })
-      .then((data) => {
-        authCtx.login(data.idToken);
-        //Once user login, redirect
-        history.replace('/');
+      //Redirect back to home page after successfully logged in
+      history.replace('/');
+      
 
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+    } else {
+      setIsLoading(false);
+      axios.post('http://localhost:5000/users/add', user)
+        .then(res => console.log(res.data));
+    }
+    
+    //Clear input fields
+    setUsername('');
+    setPassword('');
+
   };
+
+  
 
   return (
     <section className={classes.auth}>
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor='email'>Your Email</label>
-          <input type='email' id='email' required ref={emailInputRef} />
+          <label htmlFor='username'>Username</label>
+          <input type='username' id='username' required onChange={onChangeUsername}
+          value={username}/>
         </div>
         <div className={classes.control}>
           <label htmlFor='password'>Your Password</label>
@@ -97,7 +82,8 @@ const AuthForm = () => {
             type='password'
             id='password'
             required
-            ref={passwordInputRef}
+            value={password}
+            onChange={onChangePassword}
           />
         </div>
         <div className={classes.actions}>
