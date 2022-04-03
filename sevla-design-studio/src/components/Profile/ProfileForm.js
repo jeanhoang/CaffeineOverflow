@@ -5,38 +5,23 @@ import AuthContext from '../../store/auth-context';
 
 const ProfileForm = () => {
 
-  const newPasswordInputRef = useRef();
-  const authCtx = useContext(AuthContext);
+  const newPasswordInputRef = useRef(); // Retrieve user input
+  const authCtx = useContext(AuthContext); // Retrieve current user logged in
 
-  const submitHandler = event =>  {
+  const submitHandler = event => {
     event.preventDefault();
 
     const enteredNewPassword = newPasswordInputRef.current.value;
 
-    //Needs validation
-    
-    fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyB9CKq1os8x_AflwKBewArRktTOKsD4G5E', {
-      method : 'POST',
-      body: JSON.stringify({
-        idToken: authCtx.token,
-        password: enteredNewPassword,
-        returnSecureToken: false
-      }),
-      headers: {
-        'Content-type': 'application/json'
-      }
-    }).then(res => {
+    // To impliment Post request for updating user password
 
-      alert("Password changed successful!");
-
-    });
   };
-   
+
   return (
     <form className={classes.form}>
       <div className={classes.control}>
         <label htmlFor='new-password'>New Password</label>
-        <input type='password' id='new-password' minLength="7" ref={newPasswordInputRef}/>
+        <input type='password' id='new-password' minLength="7" ref={newPasswordInputRef} />
       </div>
       <div className={classes.action}>
         <button>Change Password</button>
