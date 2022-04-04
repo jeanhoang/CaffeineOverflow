@@ -18,14 +18,24 @@ const AuthForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  // Password validation
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
+
   // Form status
   const [statusMsg, setStatusMsg] = useState('');
   const newAccountMsg = "Account successfully created, please log in.";
   const errorLoggingIn = "Invalid username or password, please try again.";
   const errorRegistering = "There was an unexpected error creating an account. Please try again.";
   const invalidPassword = "Passwords do not match.";
+
+  // REST API
+  const LoginAPI = 'http://localhost:5000/users/login';
+  const RegisterAPI = 'http://localhost:5000/users/add';
+
+  // A method to clear user input
+  const clearInputs = () => {
+    setUsername('');
+    setPassword('');
+    setConfirmPassword('');
+  };
 
   // A method to switch page content between sign up or login
   const switchAuthModeHandler = () => {
@@ -44,19 +54,48 @@ const AuthForm = () => {
     setConfirmPassword(event.target.value);
   };
 
+  // A method that sends a POST request to the server for login
+  const sendLoginRequest = (user) => {
+    axios.post(LoginAPI, user)
+      .then(function (response) {
+        console.log(response);
+        // In the future, the server will send a token (unique string) for authentication. 
+        // Currently this feature is not supported yet so a hardcoded value is used as a placeholder.
+        authCtx.login('CAFFINE_OVERFLOW');
+        history.replace('/'); // Redirect back to home page after successful login
+      })
+      .catch(function (error) {
+        console.log(error);
+        setStatusMsg(errorLoggingIn);
+      });
+  };
+
+  // A method that sends a POST request to the server for registering a user
+  const sendRegisterRequest = (user) => {
+    axios.post(RegisterAPI, user)
+      .then(function (response) {
+        console.log(response.data);
+        setStatusMsg(newAccountMsg);
+        setIsLogin(true);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setStatusMsg(errorRegistering);
+      });
+  };
+
   const submitHandler = (event) => {
     event.preventDefault(); // Prevent page refresh
     setStatusMsg('') // Clear status
 
-    // Validate input is not empty
+    // Validate both password fields are the same 
     if (!isLogin && password !== confirmPassword) {
-      setPasswordIsValid(false);
       setStatusMsg(invalidPassword);
       return;
     }
-    setPasswordIsValid(true);
 
-    setIsLoading(true); // Display loading text
+    // Display loading text
+    setIsLoading(true);
 
     // Create user object to pass to server
     const user = {
@@ -66,39 +105,22 @@ const AuthForm = () => {
 
     // Check state of page to see if user is logging in or signing up
     if (isLogin) {
-      setIsLoading(false); // Hide loading text
+      // Hide loading text
+      setIsLoading(false);
 
       // Send POST request to the server for login
-      axios.post('http://localhost:5000/users/login', user)
-        .then(function (response) {
-          // In the future, the server will send a token (unique string) for authentication. 
-          // Currently this feature is not supported yet so a hardcoded value is used as a placeholder.
-          authCtx.login('CAFFINE_OVERFLOW');
-          history.replace('/'); // Redirect back to home page after successful login
-        })
-        .catch(function (error) {
-          console.log(error);
-          setStatusMsg(errorLoggingIn);
-        });
+      sendLoginRequest(user);
+
     } else {
-      setIsLoading(false); // Hide loading text
+      // Hide loading text
+      setIsLoading(false);
 
       // Send POST request to the server for signup
-      axios.post('http://localhost:5000/users/add', user)
-        .then(function (response) {
-          setStatusMsg(newAccountMsg);
-          setIsLogin(true);
-        })
-        .catch(function (error) {
-          console.log(error);
-          setStatusMsg(errorRegistering);
-        });
+      sendRegisterRequest(user);
     }
 
     //Clear input fields
-    setUsername('');
-    setPassword('');
-    setConfirmPassword('');
+    clearInputs();
   };
 
   return (
