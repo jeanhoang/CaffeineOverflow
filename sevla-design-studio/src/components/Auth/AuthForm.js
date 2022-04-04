@@ -22,9 +22,10 @@ const AuthForm = () => {
   // Form status
   const [statusMsg, setStatusMsg] = useState('');
   const newAccountMsg = "Account successfully created, please log in.";
-  const errorLoggingIn = "Invalid username or password, please try again.";
-  const errorRegistering = "There was an unexpected error creating an account. Please try again.";
-  const invalidPassword = "Passwords do not match.";
+  const invalidLoginUsername = "Invalid username, please try again.";
+  const invalidLoginPassword = "Invalid password, please try again.";
+  const errorMsg = "There was an unexpected error. Please try again.";
+  const invalidPasswordMatch = "Passwords do not match.";
 
   // REST API
   const LoginAPI = 'http://localhost:5000/users/login';
@@ -59,14 +60,23 @@ const AuthForm = () => {
     axios.post(LoginAPI, user)
       .then(function (response) {
         console.log(response);
-        // In the future, the server will send a token (unique string) for authentication. 
-        // Currently this feature is not supported yet so a hardcoded value is used as a placeholder.
-        authCtx.login('CAFFINE_OVERFLOW');
-        history.replace('/'); // Redirect back to home page after successful login
+        // Check if credentials return a successful response
+        if (response.data === "Credentials matched") {
+          // In the future, the server will send a token (unique string) for authentication. 
+          // Currently this feature is not supported yet so a hardcoded value is used as a placeholder.
+          authCtx.login(user.username);
+          history.replace('/profile'); // Redirect back to home page after successful login
+        }
+        else if (response.data === "Wrong password") {
+          setStatusMsg(invalidLoginPassword);
+        }
+        else {
+          setStatusMsg(invalidLoginPassword);
+        }
       })
       .catch(function (error) {
         console.log(error);
-        setStatusMsg(errorLoggingIn);
+        setStatusMsg(invalidLoginUsername);
       });
   };
 
@@ -74,13 +84,19 @@ const AuthForm = () => {
   const sendRegisterRequest = (user) => {
     axios.post(RegisterAPI, user)
       .then(function (response) {
-        console.log(response.data);
-        setStatusMsg(newAccountMsg);
-        setIsLogin(true);
+        console.log(response);
+        // Check if successful response returned
+        if (response.data === "User added!") {
+          setStatusMsg(newAccountMsg);
+          setIsLogin(true);
+        }
+        else {
+          setStatusMsg(errorMsg);
+        }
       })
       .catch(function (error) {
         console.log(error);
-        setStatusMsg(errorRegistering);
+        setStatusMsg(errorMsg);
       });
   };
 
@@ -90,7 +106,7 @@ const AuthForm = () => {
 
     // Validate both password fields are the same 
     if (!isLogin && password !== confirmPassword) {
-      setStatusMsg(invalidPassword);
+      setStatusMsg(invalidPasswordMatch);
       return;
     }
 
@@ -120,7 +136,7 @@ const AuthForm = () => {
     }
 
     //Clear input fields
-    clearInputs();
+    //clearInputs();
   };
 
   return (
