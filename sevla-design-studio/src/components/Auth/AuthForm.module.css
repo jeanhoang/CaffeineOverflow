@@ -72,3 +72,11 @@
     background-color: transparent;
     color: #ae82cc;
   }
+
+  .status {
+    color: #aaebff;
+  }
+
+  .error {
+    color: #b40e0e;
+  }
