@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 
 import { useHistory } from 'react-router-dom';
@@ -22,8 +22,10 @@ const AuthForm = () => {
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   // Form status
   const [statusMsg, setStatusMsg] = useState('');
-  const newAccountMsg = "Account successfully created, please log in."
-  const errorLoggingIn = "Invalid username or password, please try again"
+  const newAccountMsg = "Account successfully created, please log in.";
+  const errorLoggingIn = "Invalid username or password, please try again.";
+  const errorRegistering = "There was an unexpected error creating an account. Please try again.";
+  const invalidPassword = "Passwords do not match.";
 
   // A method to switch page content between sign up or login
   const switchAuthModeHandler = () => {
@@ -49,6 +51,7 @@ const AuthForm = () => {
     // Validate input is not empty
     if (!isLogin && password !== confirmPassword) {
       setPasswordIsValid(false);
+      setStatusMsg(invalidPassword);
       return;
     }
     setPasswordIsValid(true);
@@ -67,23 +70,29 @@ const AuthForm = () => {
 
       // Send POST request to the server for login
       axios.post('http://localhost:5000/users/login', user)
-        .then(res => console.log(res.data))
-        .then((data) => {
+        .then(function (response) {
           // In the future, the server will send a token (unique string) for authentication. 
           // Currently this feature is not supported yet so a hardcoded value is used as a placeholder.
           authCtx.login('CAFFINE_OVERFLOW');
+          history.replace('/'); // Redirect back to home page after successful login
+        })
+        .catch(function (error) {
+          console.log(error);
+          setStatusMsg(errorLoggingIn);
         });
-
-      history.replace('/'); // Redirect back to home page after successful login
     } else {
       setIsLoading(false); // Hide loading text
 
       // Send POST request to the server for signup
       axios.post('http://localhost:5000/users/add', user)
-        .then(res => console.log(res.data));
-
-      setStatusMsg(newAccountMsg)
-      setIsLogin(true);
+        .then(function (response) {
+          setStatusMsg(newAccountMsg);
+          setIsLogin(true);
+        })
+        .catch(function (error) {
+          console.log(error);
+          setStatusMsg(errorRegistering);
+        });
     }
 
     //Clear input fields
@@ -119,7 +128,7 @@ const AuthForm = () => {
             onChange={onChangePassword}
           />
         </div>
-        {<p className={classes.status}>{statusMsg}</p>}
+        {isLogin && <p className={classes.status}>{statusMsg}</p>}
 
         {!isLogin && <div className={classes.control}>
           <label htmlFor='confirmPassword'>Confirm Password</label>
@@ -132,7 +141,7 @@ const AuthForm = () => {
             onChange={onChangeConfirmPassword}
           />
         </div>}
-        {!passwordIsValid && <p className={classes.error}>Passwords do not match</p>}
+        {!isLogin && <p className={classes.error}>{statusMsg}</p>}
 
         <div className={classes.actions}>
           {!isLoading && (
