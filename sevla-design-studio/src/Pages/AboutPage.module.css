@@ -1,0 +1,37 @@
+.about-image img {
+    padding: 25px;
+    width: 500px;
+    height: 500px;
+
+}
+.about {
+    width: 100%;
+    padding: 78px 0px;
+}
+
+.about-text {
+    width: 550px;
+    text-align: center;
+}
+
+.about-text h1 {
+    font-size: 40px;
+}
+
+.about-wrap {
+    width: 1130px;
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.social-media {
+    width: 550px;
+}
+
+.icons {
+    size: 20em;
+}
