@@ -50,7 +50,7 @@ const Header = props => {
         )}
         {isLoggedIn && (
           <li>
-            <button onClick={logoutHandler}>Logout</button>
+            <button className={classes.logout} onClick={logoutHandler}>Logout</button>
           </li>
         )}
       </ul>
