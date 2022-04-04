@@ -2,7 +2,26 @@
     margin: 3rem auto;
     text-align: center;
   }
+
+  .content {
+    min-height: 90vh;
+    color: #35255c;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   
   .starting h1 {
-    font-size: 5rem;
+    font-size: 13rem;
+    margin-top: 250px;
+    margin-bottom: 30px;
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .starting h4 {
+    font-size: 1.6rem;
   }

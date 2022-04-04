@@ -3,9 +3,10 @@
 * cart modal behaviour.
 */
 
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import Header from './Header';
+import Footer from './Footer'
 import Cart from '../Cart/Cart';
 import CartProvider from '../../store/CartProvider';
 
@@ -28,11 +29,14 @@ const Layout = (props) => {
   // Returns default page layout of the site
   // CartProvider manages and shares cart data, it does not render any UI components
   return (
-    <CartProvider>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
-      <main>{props.children}</main>
-    </CartProvider>
+    <Fragment>
+      <CartProvider>
+        {cartIsShown && <Cart onClose={hideCartHandler} />}
+        <Header onShowCart={showCartHandler} />
+        <main>{props.children}</main>
+      </CartProvider>
+      <Footer />
+    </Fragment>
   );
 };
 

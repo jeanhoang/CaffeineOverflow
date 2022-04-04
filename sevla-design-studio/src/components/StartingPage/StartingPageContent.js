@@ -1,12 +1,24 @@
 import classes from './StartingPageContent.module.css';
+import backgroundImage from '../../assets/background.png';
 
 const StartingPageContent = () => {
+
   return (
     <section className={classes.starting}>
-      <br></br>
-      <h1>Welcome to Sevla Design Studio</h1>
-      <h2>Shop Coming Soon!</h2>
-    </section>
+      <div className={classes.content} style={{
+        background: `url(${backgroundImage})`,
+        height: '100%',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+      }}>
+
+        <div className={classes.center}>
+          <h1>Coming Soon</h1>
+          <h4>Our website is currently under construction. Follow us on social media to stay updated!</h4>
+        </div>
+      </div>
+    </section >
   );
 };
 
