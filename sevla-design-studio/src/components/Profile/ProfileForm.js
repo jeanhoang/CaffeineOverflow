@@ -7,6 +7,7 @@ const ProfileForm = () => {
 
   const newPasswordInputRef = useRef(); // Retrieve user input
   const authCtx = useContext(AuthContext); // Retrieve current user logged in
+  const username = authCtx.token;
 
   const submitHandler = event => {
     event.preventDefault();
@@ -18,15 +19,19 @@ const ProfileForm = () => {
   };
 
   return (
-    <form className={classes.form}>
-      <div className={classes.control}>
-        <label htmlFor='new-password'>New Password</label>
-        <input type='password' id='new-password' minLength="7" ref={newPasswordInputRef} />
-      </div>
-      <div className={classes.action}>
-        <button>Change Password</button>
-      </div>
-    </form>
+    <div>
+
+      <form className={classes.form}>
+        <h1>Welcome, {username}</h1>
+        <div className={classes.control}>
+          <label htmlFor='new-password'>New Password</label>
+          <input type='password' id='new-password' minLength="7" ref={newPasswordInputRef} />
+        </div>
+        <div className={classes.action}>
+          <button>Change Password</button>
+        </div>
+      </form>
+    </div>
   );
 }
 

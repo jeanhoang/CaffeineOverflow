@@ -31,13 +31,6 @@ const AuthForm = () => {
   const LoginAPI = 'http://localhost:5000/users/login';
   const RegisterAPI = 'http://localhost:5000/users/add';
 
-  // A method to clear user input
-  const clearInputs = () => {
-    setUsername('');
-    setPassword('');
-    setConfirmPassword('');
-  };
-
   // A method to switch page content between sign up or login
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -134,9 +127,6 @@ const AuthForm = () => {
       // Send POST request to the server for signup
       sendRegisterRequest(user);
     }
-
-    //Clear input fields
-    //clearInputs();
   };
 
   return (
