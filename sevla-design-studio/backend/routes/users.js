@@ -2,6 +2,7 @@ const router = require('express').Router();
 let User = require('../models/user.models');
 const bcrypt = require('bcrypt');
 
+
 //for development purposes only
 router.route('/').get((req, res) => {
     User.find()
@@ -20,6 +21,7 @@ router.route('/add').post(async(req, res) => {
     }
     catch {
         res.status(400).json('Error: ' + err);
+
     }
 });
 
@@ -38,6 +40,8 @@ router.route('/login').post(async(req, res) => {
     catch {
         res.status(400).json('Error');
     }
+
+    
     
 });
 
