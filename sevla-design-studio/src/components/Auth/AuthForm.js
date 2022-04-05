@@ -1,3 +1,7 @@
+/*
+* A component that creates the login and register page.
+*/
+
 import { useState, useContext } from 'react';
 import axios from 'axios';
 
@@ -11,15 +15,16 @@ const AuthForm = () => {
   const authCtx = useContext(AuthContext); // Hook to set or get user account info
   const history = useHistory(); // Hook to redirect the user to another page
 
-  // Hooks to manage state
+  // Manage page content
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
   // Form input fields
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // Form status
+  // Form status messages
   const [statusMsg, setStatusMsg] = useState('');
   const newAccountMsg = "Account successfully created, please log in.";
   const invalidLoginUsername = "Invalid username, please try again.";
@@ -27,7 +32,7 @@ const AuthForm = () => {
   const errorMsg = "There was an unexpected error. Please try again.";
   const invalidPasswordMatch = "Passwords do not match.";
 
-  // REST API
+  // REST API URLs
   const LoginAPI = 'https://sevlabackend2.herokuapp.com/users/login';
   const RegisterAPI = 'https://sevlabackend2.herokuapp.com/users/add';
 
@@ -56,9 +61,9 @@ const AuthForm = () => {
         // Check if credentials return a successful response
         if (response.data === "Credentials matched") {
           // In the future, the server will send a token (unique string) for authentication. 
-          // Currently this feature is not supported yet so a hardcoded value is used as a placeholder.
+          // Currently this feature is not supported yet so the username is used as a placeholder.
           authCtx.login(user.username);
-          history.replace('/profile'); // Redirect back to home page after successful login
+          history.replace('/profile'); // Redirect back to profile page after successful login
         }
         else if (response.data === "Wrong password") {
           setStatusMsg(invalidLoginPassword);

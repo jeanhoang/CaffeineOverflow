@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
-const AuthContext = React.createContext ({
+/*
+* A component that manages the login data of the current user.
+*/
+
+import React, { useState } from 'react';
+const AuthContext = React.createContext({
     token: '',
     isLoggedIn: false,
-    login: (token) => {},
-    logout: () => {}
+    login: (token) => { },
+    logout: () => { }
 });
 
 export const AuthContextProvider = (props) => {
@@ -14,14 +18,12 @@ export const AuthContextProvider = (props) => {
     // Else: Not login
     const [token, setToken] = useState(initialToken);
 
-
     const userIsLoggedIn = !!token; //If token is a string that's not empty => return true
 
     const loginHandler = (token) => {
         setToken(token);
 
         //Store user's login token in local storage 
-        //Set duration so it expires in 1 hour, not everytime we reload the page
         localStorage.setItem('token', token);
     }
 
@@ -32,15 +34,13 @@ export const AuthContextProvider = (props) => {
 
     //Construct context
     const contextValue = {
-        token: token, 
+        token: token,
         isLoggedIn: userIsLoggedIn,
         login: loginHandler,
         logout: logoutHandler
     }
 
-
     return (<AuthContext.Provider value={contextValue}>{props.children}</AuthContext.Provider>);
-
 }
 
 export default AuthContext;

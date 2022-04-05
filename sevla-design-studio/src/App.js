@@ -1,3 +1,9 @@
+/*
+* The main app component which is loaded by the index page. 
+* It directs the user to the requested component/page based on the url.
+* It also uses the Context hook to access the current user data (if any).
+*/
+
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
@@ -10,6 +16,8 @@ import AuthContext from './store/auth-context';
 
 function App() {
 
+  // Returns requested component/page based on the url
+  // AuthContext provides user login data (if any)
   return (
     <AuthContext.Consumer>
       {(ctx) => {

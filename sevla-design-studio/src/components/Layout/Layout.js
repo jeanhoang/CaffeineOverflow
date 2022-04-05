@@ -12,8 +12,7 @@ import CartProvider from '../../store/CartProvider';
 
 const Layout = (props) => {
 
-  // useState hook used to manage the state of the page for displaying the cart; the component is re-evaluated whenever it changes
-  // Returns two pointers that hold the current state and update the state, default set to hide
+  // Hook used to manage the state of the page for displaying the cart
   const [cartIsShown, setCartIsShown] = useState(false);
 
   // Show cart
