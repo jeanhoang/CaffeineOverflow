@@ -1,10 +1,13 @@
 "use strict";
 
+// Import the required dependecies
 var router = require('express').Router();
 
 var User = require('../models/user.models');
 
-var bcrypt = require('bcrypt'); //for development purposes only
+var bcrypt = require('bcrypt'); //
+// For development purposes only
+//
 
 
 router.route('/').get(function (req, res) {
@@ -13,7 +16,10 @@ router.route('/').get(function (req, res) {
   })["catch"](function (err) {
     return res.status(400).json('Error: ' + err);
   });
-});
+}); // 
+// POST method for adding a new user
+//
+
 router.route('/add').post(function _callee(req, res) {
   var salt, password, username, newUser;
   return regeneratorRuntime.async(function _callee$(_context) {
@@ -53,7 +59,10 @@ router.route('/add').post(function _callee(req, res) {
       }
     }
   }, null, null, [[0, 12]]);
-});
+}); // 
+// POST method for finding an specific user for login purposes
+//
+
 router.route('/login').post(function _callee2(req, res) {
   var user;
   return regeneratorRuntime.async(function _callee2$(_context2) {
@@ -108,7 +117,11 @@ router.route('/login').post(function _callee2(req, res) {
       }
     }
   }, null, null, [[5, 15]]);
-});
+}); // 
+// POST method for finding an specific user for login purposes
+// For development purposes only
+//
+
 router.route('/:username').get(function (req, res) {
   User.find({
     username: req.body.username
@@ -117,5 +130,6 @@ router.route('/:username').get(function (req, res) {
   })["catch"](function (err) {
     return res.status(400).json('Error: ' + err);
   });
-});
+}); // Export the router to the module
+
 module.exports = router;

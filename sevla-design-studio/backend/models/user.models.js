@@ -1,6 +1,8 @@
+// Import the required dependecies
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
+// Create a new schema for users
 const userSchema = new schema({
     username: {
         type: String,
@@ -18,6 +20,8 @@ const userSchema = new schema({
     timestamps: true,
 });
 
+// Set the schema to the mongoDB collection
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+// Export the router to the module
+module.exports = User; 

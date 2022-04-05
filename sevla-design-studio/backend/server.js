@@ -1,40 +1,32 @@
+// Import the required dependecies
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-
 require('dotenv').config();
 
+// Initialize the backend with the server port
 const app = express();
 const port = process.env.PORT || 5000;
-// app.set('port', process.env.PORT || 5000);
-// console.log("++++++++++++++++" + app.get('port'));
-
 app.use(cors());
 app.use(express.json());
 
-// app.use(express.static('../build'));
-
-
-
+// Connect the uri to the mongoDB 
 const uri = process.env.ATLAS_URI;
-
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "sevla-design-studio", "build",     
-    "index.html"));
- });
- 
 mongoose.connect(uri);
 
+// Create the backend connection
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB database connection established sucessfully.")
 })
 
+// Define the user schema and use it
 const usersRouter = require('./routes/users');
-
 app.use('/users', usersRouter);
 
-
+// check connection for development puposes
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
 }) 
+
+

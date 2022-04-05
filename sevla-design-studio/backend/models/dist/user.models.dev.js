@@ -1,8 +1,10 @@
 "use strict";
 
+// Import the required dependecies
 var mongoose = require('mongoose');
 
-var schema = mongoose.Schema;
+var schema = mongoose.Schema; // Create a new schema for users
+
 var userSchema = new schema({
   username: {
     type: String,
@@ -18,6 +20,8 @@ var userSchema = new schema({
   }
 }, {
   timestamps: true
-});
-var User = mongoose.model('User', userSchema);
+}); // Set the schema to the mongoDB collection
+
+var User = mongoose.model('User', userSchema); // Export the router to the module
+
 module.exports = User;

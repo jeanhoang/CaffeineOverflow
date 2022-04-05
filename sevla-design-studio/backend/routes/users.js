@@ -1,15 +1,21 @@
+// Import the required dependecies
 const router = require('express').Router();
 let User = require('../models/user.models');
 const bcrypt = require('bcrypt');
 
-
-//for development purposes only
+//
+// For development purposes only
+//
 router.route('/').get((req, res) => {
     User.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
+// 
+// POST method for adding a new user
+//
 router.route('/add').post(async(req, res) => {
     try {
         const salt = await bcrypt.genSalt();
@@ -25,6 +31,10 @@ router.route('/add').post(async(req, res) => {
     }
 });
 
+
+// 
+// POST method for finding an specific user for login purposes
+//
 router.route('/login').post(async(req, res) => {
     const user = await User.findOne({username: req.body.username})
     if (user == null) {
@@ -40,11 +50,13 @@ router.route('/login').post(async(req, res) => {
     catch {
         res.status(400).json('Error');
     }
-
-    
     
 });
 
+// 
+// POST method for finding an specific user for login purposes
+// For development purposes only
+//
 router.route('/:username').get((req, res) => {
     
     User.find({username: req.body.username})
@@ -53,5 +65,7 @@ router.route('/:username').get((req, res) => {
 
 });
 
+
+// Export the router to the module
 module.exports = router;
 
