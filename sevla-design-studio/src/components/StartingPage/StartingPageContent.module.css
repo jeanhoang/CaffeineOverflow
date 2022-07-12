@@ -1,6 +1,7 @@
 .starting {
-    margin: 3rem auto;
+    margin: auto;
     text-align: center;
+    position: relative;
   }
 
   .content {
