@@ -119,7 +119,6 @@ router.route('/login').post(function _callee2(req, res) {
   }, null, null, [[5, 15]]);
 }); // 
 // POST method for finding an specific user for login purposes
-// For development purposes only
 //
 
 router.route('/:username').get(function (req, res) {

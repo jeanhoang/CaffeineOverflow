@@ -21,11 +21,17 @@ mongoose.connect(uri); // Create the backend connection
 var connection = mongoose.connection;
 connection.once('open', function () {
   console.log("MongoDB database connection established sucessfully.");
-}); // Define the user schema and use it
+}); ///////////////////////////////////////////////////////
+// Define the users schema and use it
 
 var usersRouter = require('./routes/users');
 
-app.use('/users', usersRouter); // check connection for development puposes
+app.use('/users', usersRouter); // Define the products schema and use it
+
+var productRouter = require('./routes/products');
+
+app.use('/products', productRouter); ///////////////////////////////////////////////////////
+// check connection for development puposes
 
 app.listen(port, function () {
   console.log("Server is running on port: ".concat(port));

@@ -20,9 +20,19 @@ connection.once('open', () => {
     console.log("MongoDB database connection established sucessfully.")
 })
 
-// Define the user schema and use it
+
+///////////////////////////////////////////////////////
+
+// Define the users schema and use it
 const usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
+
+// Define the products schema and use it
+const productRouter = require('./routes/products');
+app.use('/products', productRouter);
+
+///////////////////////////////////////////////////////
+
 
 // check connection for development puposes
 app.listen(port, () => {

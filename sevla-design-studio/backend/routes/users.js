@@ -55,7 +55,6 @@ router.route('/login').post(async(req, res) => {
 
 // 
 // POST method for finding an specific user for login purposes
-// For development purposes only
 //
 router.route('/:username').get((req, res) => {
     
