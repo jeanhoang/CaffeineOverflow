@@ -119,18 +119,17 @@ const AuthForm = () => {
 
     // Check state of page to see if user is logging in or signing up
     if (isLogin) {
-      // Hide loading text
-      setIsLoading(false);
-
       // Send POST request to the server for login
       sendLoginRequest(user);
 
-    } else {
       // Hide loading text
       setIsLoading(false);
-
+    } else {
       // Send POST request to the server for signup
       sendRegisterRequest(user);
+
+      // Hide loading text
+      setIsLoading(false);
     }
   };
 
@@ -178,7 +177,7 @@ const AuthForm = () => {
 
         <div className={classes.actions}>
           {!isLoading && (
-            <button>{isLogin ? 'Login' : 'Create Account'}</button>
+            <button disabled={isLoading.value}>{isLogin ? 'Login' : 'Create Account'}</button>
           )}
 
           {isLoading && <p>Sending request...</p>}
