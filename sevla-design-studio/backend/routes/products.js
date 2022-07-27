@@ -13,6 +13,49 @@ router.route('/').get((req, res) => {
 });
 
 
+//
+// GET method for getting all the products at once with Pagination
+//
+router.route('/send').get(async (req, res) => {
+
+
+    try{
+
+        let { page, size, sort } = req.query;
+
+        // If the page is not applied in query.
+        if (!page) {
+
+            // Make the Default value one.
+            page = 1;
+
+        }
+        if (!size) {
+
+            size = 10;
+            
+        }
+
+        //  We have to make it integer because query parameter passed is string
+        const limit = parseInt(size);
+  
+
+        // We pass 1 for sorting data in ascending order using ids
+        const prdct = await Product.find()
+            .sort({ votes: 1, _id: 1 }).limit(limit)
+            res.send({
+                page,
+                size,
+                Info: prdct,
+            });
+    }
+    catch (error) {
+        res.sendStatus(500);
+    }
+    
+});
+
+
 // 
 // POST method for adding a new product
 //
@@ -47,6 +90,8 @@ router.route('/:item').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 
 });
+
+
 
 
 // Export the router to the module

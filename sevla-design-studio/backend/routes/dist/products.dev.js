@@ -14,15 +14,68 @@ router.route('/').get(function (req, res) {
   })["catch"](function (err) {
     return res.status(400).json('Error: ' + err);
   });
+}); //
+// GET method for getting all the products at once with Pagination
+//
+
+router.route('/send').get(function _callee(req, res) {
+  var _req$query, page, size, sort, limit, prdct;
+
+  return regeneratorRuntime.async(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.prev = 0;
+          _req$query = req.query, page = _req$query.page, size = _req$query.size, sort = _req$query.sort; // If the page is not applied in query.
+
+          if (!page) {
+            // Make the Default value one.
+            page = 1;
+          }
+
+          if (!size) {
+            size = 10;
+          } //  We have to make it integer because query parameter passed is string
+
+
+          limit = parseInt(size); // We pass 1 for sorting data in ascending order using ids
+
+          _context.next = 7;
+          return regeneratorRuntime.awrap(Product.find().sort({
+            votes: 1,
+            _id: 1
+          }).limit(limit));
+
+        case 7:
+          prdct = _context.sent;
+          res.send({
+            page: page,
+            size: size,
+            Info: prdct
+          });
+          _context.next = 14;
+          break;
+
+        case 11:
+          _context.prev = 11;
+          _context.t0 = _context["catch"](0);
+          res.sendStatus(500);
+
+        case 14:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, null, null, [[0, 11]]);
 }); // 
 // POST method for adding a new product
 //
 
-router.route('/add').post(function _callee(req, res) {
+router.route('/add').post(function _callee2(req, res) {
   var item, quantity, price, description, size, style, newProduct;
-  return regeneratorRuntime.async(function _callee$(_context) {
+  return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
-      switch (_context.prev = _context.next) {
+      switch (_context2.prev = _context2.next) {
         case 0:
           try {
             item = req.body.item;
@@ -48,7 +101,7 @@ router.route('/add').post(function _callee(req, res) {
 
         case 1:
         case "end":
-          return _context.stop();
+          return _context2.stop();
       }
     }
   });
