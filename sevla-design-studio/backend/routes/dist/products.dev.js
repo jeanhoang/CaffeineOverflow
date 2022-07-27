@@ -58,7 +58,7 @@ router.route('/add').post(function _callee(req, res) {
 
 router.route('/:item').get(function (req, res) {
   Product.find({
-    item: req.body.item
+    item: req.params['item']
   }).then(function (product) {
     return res.json(product);
   })["catch"](function (err) {

@@ -42,7 +42,7 @@ router.route('/add').post(async(req, res) => {
 //
 router.route('/:item').get((req, res) => {
     
-    Product.find({item: req.body.item})
+    Product.find({item: req.params['item']})
     .then(product => res.json(product))
     .catch(err => res.status(400).json('Error: ' + err));
 
