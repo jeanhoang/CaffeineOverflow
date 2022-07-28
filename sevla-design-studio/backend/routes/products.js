@@ -1,3 +1,4 @@
+
 // Import the required dependecies
 const router = require('express').Router();
 let Product = require('../models/product.models');
@@ -33,7 +34,7 @@ router.route('/send').get(async (req, res) => {
         if (!size) {
 
             size = 10;
-            
+
         }
 
         //  We have to make it integer because query parameter passed is string
@@ -61,20 +62,20 @@ router.route('/send').get(async (req, res) => {
 //
 router.route('/add').post(async(req, res) => {
     try {
-        const item = req.body.item;
-        const quantity = req.body.quantity;
-        const price = req.body.price;
-        const description = req.body.description;
-        const size = req.body.size;
-        const style = req.body.style;
+        const ProductName = req.body.ProductName;
+        const ProductDescription = req.body.ProductDescription;
+        const ProductPrice = req.body.ProductPrice;
+        const ProductSize = req.body.ProductSize;
+        const ProductType = req.body.ProductType;
+        const ProductQuantity = req.body.ProductQuantity;
+        
 
-        const newProduct = new Product({item, quantity, price, description, size, style});
+        const newProduct = new Product({ProductName, ProductDescription, ProductPrice, ProductSize, ProductType, ProductQuantity});
         newProduct.save()
         .then(() => res.json('Product added!'))
     }
     catch {
         res.status(400).json('Error: ' + err);
-
     }
 });
 
@@ -96,4 +97,5 @@ router.route('/:item').get((req, res) => {
 
 // Export the router to the module
 module.exports = router;
+
 

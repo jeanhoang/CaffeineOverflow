@@ -72,25 +72,25 @@ router.route('/send').get(function _callee(req, res) {
 //
 
 router.route('/add').post(function _callee2(req, res) {
-  var item, quantity, price, description, size, style, newProduct;
+  var ProductName, ProductDescription, ProductPrice, ProductSize, ProductType, ProductQuantity, newProduct;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           try {
-            item = req.body.item;
-            quantity = req.body.quantity;
-            price = req.body.price;
-            description = req.body.description;
-            size = req.body.size;
-            style = req.body.style;
+            ProductName = req.body.ProductName;
+            ProductDescription = req.body.ProductDescription;
+            ProductPrice = req.body.ProductPrice;
+            ProductSize = req.body.ProductSize;
+            ProductType = req.body.ProductType;
+            ProductQuantity = req.body.ProductQuantity;
             newProduct = new Product({
-              item: item,
-              quantity: quantity,
-              price: price,
-              description: description,
-              size: size,
-              style: style
+              ProductName: ProductName,
+              ProductDescription: ProductDescription,
+              ProductPrice: ProductPrice,
+              ProductSize: ProductSize,
+              ProductType: ProductType,
+              ProductQuantity: ProductQuantity
             });
             newProduct.save().then(function () {
               return res.json('Product added!');

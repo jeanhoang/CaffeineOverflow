@@ -7,13 +7,19 @@ var cors = require('cors');
 
 var mongoose = require('mongoose');
 
-require('dotenv').config(); // Initialize the backend with the server port
+require('dotenv').config();
+
+var bodyParser = require('body-parser'); // Initialize the backend with the server port
 
 
 var app = express();
 var port = process.env.PORT || 5000;
 app.use(cors());
-app.use(express.json()); // Connect the uri to the mongoDB 
+app.use(express.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json()); // Connect the uri to the mongoDB 
 
 var uri = process.env.ATLAS_URI;
 mongoose.connect(uri); // Create the backend connection

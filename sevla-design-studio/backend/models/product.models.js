@@ -1,3 +1,4 @@
+
 // Import the required dependecies
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
@@ -8,36 +9,37 @@ const productSchema = new schema({
 
     // << VALUES TO BE CHANGED IN FUTURE >>
     
-    item: {
+    ProductName: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
         // minlength: 3
     },
-    quantity: {
+    ProductDescription: {
         type: String,
-        required: true,
+        required: true
         // minlength: 6
     },
-    price: {
+    ProductPrice: {
         type: String,
-        required: true,
+        required: true
         // minlength: 6
     },
-    description: {
+    ProductSize: {
         type: String,
-        required: true,
+        required: true
         // minlength: 6
     },
-    size: {
+    ProductType: {
         type: String,
-        required: true,
+        required: true
         // minlength: 6
     },
-    style: {
+    ProductQuantity: {
         type: String,
         required: true,
-        minlength: 6
+        trim: true
+        // minlength: 3
     }
 },{
     timestamps: true,
