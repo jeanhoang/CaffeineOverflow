@@ -3,7 +3,9 @@
 // Import the required dependecies
 var router = require('express').Router();
 
-var Product = require('../models/product.models'); //
+var Product = require('../models/product.models');
+
+var Pagination = require('../models/pagination.models'); //
 // For development purposes only
 //
 
@@ -14,7 +16,26 @@ router.route('/').get(function (req, res) {
   })["catch"](function (err) {
     return res.status(400).json('Error: ' + err);
   });
-}); //
+}); // var page;
+// var size;
+// 
+// POST method for changing pagination page and size
+//
+// router.route('/pagination').post(async(req, res) => {
+//     try {
+//         page = req.body.page;
+//         size = req.body.size;
+//     }
+//     catch {
+//         res.status(400).json('Error: ' + err);
+//     }
+// });
+// router.route('/pag').get(async(req, res) => {
+//     Pagination.find()
+//     .then(products => res.json(products))
+//     .catch(err => res.status(400).json('Error: ' + err));
+// });
+//
 // GET method for getting all the products at once with Pagination
 //
 
@@ -51,7 +72,7 @@ router.route('/send').get(function _callee(req, res) {
           res.send({
             page: page,
             size: size,
-            Info: prdct
+            info: prdct
           });
           _context.next = 14;
           break;

@@ -2,6 +2,7 @@
 // Import the required dependecies
 const router = require('express').Router();
 let Product = require('../models/product.models');
+let Pagination = require('../models/pagination.models');
 
 
 //
@@ -12,6 +13,28 @@ router.route('/').get((req, res) => {
     .then(products => res.json(products))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+// var page;
+// var size;
+
+// 
+// POST method for changing pagination page and size
+//
+// router.route('/pagination').post(async(req, res) => {
+//     try {
+//         page = req.body.page;
+//         size = req.body.size;
+//     }
+//     catch {
+//         res.status(400).json('Error: ' + err);
+//     }
+// });
+
+// router.route('/pag').get(async(req, res) => {
+//     Pagination.find()
+//     .then(products => res.json(products))
+//     .catch(err => res.status(400).json('Error: ' + err));
+// });
 
 
 //
@@ -47,7 +70,7 @@ router.route('/send').get(async (req, res) => {
             res.send({
                 page,
                 size,
-                Info: prdct,
+                info: prdct,
             });
     }
     catch (error) {
