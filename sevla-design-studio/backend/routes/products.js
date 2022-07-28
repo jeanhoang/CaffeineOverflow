@@ -2,44 +2,18 @@
 // Import the required dependecies
 const router = require('express').Router();
 let Product = require('../models/product.models');
-let Pagination = require('../models/pagination.models');
 
 
-//
 // For development purposes only
-//
 router.route('/').get((req, res) => {
     Product.find()
     .then(products => res.json(products))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// var page;
-// var size;
-
-// 
-// POST method for changing pagination page and size
-//
-// router.route('/pagination').post(async(req, res) => {
-//     try {
-//         page = req.body.page;
-//         size = req.body.size;
-//     }
-//     catch {
-//         res.status(400).json('Error: ' + err);
-//     }
-// });
-
-// router.route('/pag').get(async(req, res) => {
-//     Pagination.find()
-//     .then(products => res.json(products))
-//     .catch(err => res.status(400).json('Error: ' + err));
-// });
 
 
-//
 // GET method for getting all the products at once with Pagination
-//
 router.route('/send').get(async (req, res) => {
 
 
@@ -80,9 +54,8 @@ router.route('/send').get(async (req, res) => {
 });
 
 
-// 
+
 // POST method for adding a new product
-//
 router.route('/add').post(async(req, res) => {
     try {
         const ProductName = req.body.ProductName;
@@ -104,9 +77,8 @@ router.route('/add').post(async(req, res) => {
 
 
 
-// 
+
 // GET method for finding an specific product
-//
 router.route('/:item').get((req, res) => {
     
     Product.find({item: req.params['item']})
@@ -114,9 +86,6 @@ router.route('/:item').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 
 });
-
-
-
 
 // Export the router to the module
 module.exports = router;
