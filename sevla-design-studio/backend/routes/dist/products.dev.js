@@ -101,9 +101,9 @@ router.route('/add').post(function _callee2(req, res) {
   });
 }); // GET method for finding an specific product
 
-router.route('/:item').get(function (req, res) {
+router.route('/:ProductName').get(function (req, res) {
   Product.find({
-    item: req.params['item']
+    ProductName: req.params['ProductName']
   }).then(function (product) {
     return res.json(product);
   })["catch"](function (err) {

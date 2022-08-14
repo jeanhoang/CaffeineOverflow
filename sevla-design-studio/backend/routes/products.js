@@ -79,9 +79,9 @@ router.route('/add').post(async(req, res) => {
 
 
 // GET method for finding an specific product
-router.route('/:item').get((req, res) => {
+router.route('/:ProductName').get((req, res) => {
     
-    Product.find({item: req.params['item']})
+    Product.find({ProductName: req.params['ProductName']})
     .then(product => res.json(product))
     .catch(err => res.status(400).json('Error: ' + err));
 
