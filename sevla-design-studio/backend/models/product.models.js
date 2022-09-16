@@ -40,6 +40,10 @@ const productSchema = new schema({
         required: true,
         trim: true
         // minlength: 3
+    },
+    ProductImg: {
+        type: Array,
+        required: true
     }
 },{
     timestamps: true,
@@ -50,3 +54,5 @@ const Product = mongoose.model('Product', productSchema);
 
 // Export the router to the module
 module.exports = Product; 
+
+

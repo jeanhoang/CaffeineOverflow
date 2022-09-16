@@ -38,6 +38,10 @@ var productSchema = new schema({
     required: true,
     trim: true // minlength: 3
 
+  },
+  ProductImg: {
+    type: Array,
+    required: true
   }
 }, {
   timestamps: true

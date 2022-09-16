@@ -66,7 +66,7 @@ router.route('/send').get(function _callee(req, res) {
 }); // POST method for adding a new product
 
 router.route('/add').post(function _callee2(req, res) {
-  var ProductName, ProductDescription, ProductPrice, ProductSize, ProductType, ProductQuantity, newProduct;
+  var ProductName, ProductDescription, ProductPrice, ProductSize, ProductType, ProductQuantity, ProductImg, newProduct;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
@@ -78,13 +78,15 @@ router.route('/add').post(function _callee2(req, res) {
             ProductSize = req.body.ProductSize;
             ProductType = req.body.ProductType;
             ProductQuantity = req.body.ProductQuantity;
+            ProductImg = req.body.ProductImg;
             newProduct = new Product({
               ProductName: ProductName,
               ProductDescription: ProductDescription,
               ProductPrice: ProductPrice,
               ProductSize: ProductSize,
               ProductType: ProductType,
-              ProductQuantity: ProductQuantity
+              ProductQuantity: ProductQuantity,
+              ProductImg: ProductImg
             });
             newProduct.save().then(function () {
               return res.json('Product added!');

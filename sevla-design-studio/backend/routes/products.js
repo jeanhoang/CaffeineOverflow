@@ -1,4 +1,5 @@
 
+
 // Import the required dependecies
 const router = require('express').Router();
 let Product = require('../models/product.models');
@@ -64,9 +65,11 @@ router.route('/add').post(async(req, res) => {
         const ProductSize = req.body.ProductSize;
         const ProductType = req.body.ProductType;
         const ProductQuantity = req.body.ProductQuantity;
+        const ProductImg = req.body.ProductImg;
+        
         
 
-        const newProduct = new Product({ProductName, ProductDescription, ProductPrice, ProductSize, ProductType, ProductQuantity});
+        const newProduct = new Product({ProductName, ProductDescription, ProductPrice, ProductSize, ProductType, ProductQuantity, ProductImg});
         newProduct.save()
         .then(() => res.json('Product added!'))
     }
@@ -89,5 +92,6 @@ router.route('/:ProductName').get((req, res) => {
 
 // Export the router to the module
 module.exports = router;
+
 
 
