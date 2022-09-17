@@ -21,7 +21,7 @@ const productSchema = new schema({
         // minlength: 6
     },
     ProductPrice: {
-        type: String,
+        type: Number,
         required: true
         // minlength: 6
     },

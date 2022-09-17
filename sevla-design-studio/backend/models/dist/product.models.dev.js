@@ -19,7 +19,7 @@ var productSchema = new schema({
 
   },
   ProductPrice: {
-    type: String,
+    type: Number,
     required: true // minlength: 6
 
   },
