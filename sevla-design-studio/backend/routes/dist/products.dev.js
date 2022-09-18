@@ -14,8 +14,8 @@ router.route('/').get(function (req, res) {
   });
 }); // GET method for getting all the products at once with Pagination
 
-router.route('/send').get(function _callee(req, res) {
-  var _req$query, page, size, sort, limit, prdct;
+router.route('/send').get(function _callee(req, res, next) {
+  var _req$query, page, size, sort, limit, pg, prdct;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -34,35 +34,36 @@ router.route('/send').get(function _callee(req, res) {
           } //  We have to make it integer because query parameter passed is string
 
 
-          limit = parseInt(size); // We pass 1 for sorting data in ascending order using ids
+          limit = parseInt(size);
+          pg = parseInt(size); // We pass 1 for sorting data in ascending order using ids
 
-          _context.next = 7;
+          _context.next = 8;
           return regeneratorRuntime.awrap(Product.find().sort({
             votes: 1,
             _id: 1
-          }).limit(limit));
+          }).skip(pg > 0 ? (pg - 1) * limit : 0).limit(limit));
 
-        case 7:
+        case 8:
           prdct = _context.sent;
           res.send({
             page: page,
             size: size,
             info: prdct
           });
-          _context.next = 14;
+          _context.next = 15;
           break;
 
-        case 11:
-          _context.prev = 11;
+        case 12:
+          _context.prev = 12;
           _context.t0 = _context["catch"](0);
           res.sendStatus(500);
 
-        case 14:
+        case 15:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 11]]);
+  }, null, null, [[0, 12]]);
 }); // POST method for adding a new product
 
 router.route('/add').post(function _callee2(req, res) {

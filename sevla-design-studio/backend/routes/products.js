@@ -15,7 +15,7 @@ router.route('/').get((req, res) => {
 
 
 // GET method for getting all the products at once with Pagination
-router.route('/send').get(async (req, res) => {
+router.route('/send').get(async (req, res, next) => {
 
 
     try{
@@ -37,11 +37,14 @@ router.route('/send').get(async (req, res) => {
 
         //  We have to make it integer because query parameter passed is string
         const limit = parseInt(size);
+        const pg = parseInt(size);
   
 
         // We pass 1 for sorting data in ascending order using ids
         const prdct = await Product.find()
-            .sort({ votes: 1, _id: 1 }).limit(limit)
+            .sort({ votes: 1, _id: 1 })
+            .skip( pg > 0 ? ( ( pg - 1 ) * limit ) : 0 )
+            .limit(limit)
             res.send({
                 page,
                 size,
