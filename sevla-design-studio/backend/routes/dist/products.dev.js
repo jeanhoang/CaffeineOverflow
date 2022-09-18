@@ -35,7 +35,7 @@ router.route('/send').get(function _callee(req, res, next) {
 
 
           limit = parseInt(size);
-          pg = parseInt(size); // We pass 1 for sorting data in ascending order using ids
+          pg = parseInt(page); // We pass 1 for sorting data in ascending order using ids
 
           _context.next = 8;
           return regeneratorRuntime.awrap(Product.find().sort({

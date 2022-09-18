@@ -37,7 +37,7 @@ router.route('/send').get(async (req, res, next) => {
 
         //  We have to make it integer because query parameter passed is string
         const limit = parseInt(size);
-        const pg = parseInt(size);
+        const pg = parseInt(page);
   
 
         // We pass 1 for sorting data in ascending order using ids
@@ -45,6 +45,7 @@ router.route('/send').get(async (req, res, next) => {
             .sort({ votes: 1, _id: 1 })
             .skip( pg > 0 ? ( ( pg - 1 ) * limit ) : 0 )
             .limit(limit)
+            
             res.send({
                 page,
                 size,
