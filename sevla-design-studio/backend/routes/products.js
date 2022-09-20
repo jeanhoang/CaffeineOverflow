@@ -22,10 +22,10 @@ router.route('/send').get(async (req, res, next) => {
         let { page, size, sort } = req.query;
 
         // If the page is not applied in query.
-        if (!page || !page >= 0) {
+        if (page <= 0) {
             page = 1;
         }
-        if (!size || !size >= 0) {
+        if (size <= 0) {
             size = 10;
         }
 
