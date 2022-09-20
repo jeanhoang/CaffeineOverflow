@@ -10,9 +10,11 @@ import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
 import AboutPage from './Pages/AboutPage';
 import AuthPage from './Pages/AuthPage';
+import DetailProductPage from './Pages/DetailProductPage';
 import HomePage from './Pages/HomePage';
 import Shopping from './Pages/Shopping';
 import AuthContext from './store/auth-context';
+
 
 function App() {
 
@@ -36,6 +38,9 @@ function App() {
               <Route path='/auth'>
                 <AuthPage />
               </Route>
+              <Route path='/products/:ProductName' exact>
+                  <DetailProductPage />
+              </Route>
               {ctx.isLoggedIn && (
                 <Route path='/profile'>
                   <UserProfile />
@@ -44,6 +49,7 @@ function App() {
               <Route path='*'>
                 <Redirect to='/' />
               </Route>
+              
             </Switch>
           </Layout>
         )
