@@ -46,3 +46,5 @@ sevla-design-studio/backend/node_modules/bcrypt/node-addon-api/Release/obj/nothi
 sevla-design-studio/backend/node_modules/bcrypt/node-addon-api/Release/obj/nothing/nothing.tlog/Lib-link.write.1.tlog
 sevla-design-studio/backend/node_modules/bcrypt/node-addon-api/Release/obj/nothing/nothing.tlog/Lib.command.1.tlog
 sevla-design-studio/backend/node_modules/bcrypt/node-addon-api/Release/obj/nothing/nothing.tlog/nothing.lastbuildstate
+sevla-design-studio/backend/node_modules/bcrypt/lib/binding/napi-v3/bcrypt_lib.node
+sevla-design-studio/backend/node_modules/bcrypt/node-addon-api/Release/obj/nothing/nothing.lib.recipe
