@@ -33,8 +33,8 @@ const AuthForm = () => {
   const invalidPasswordMatch = "Passwords do not match.";
 
   // REST API URLs
-  const LoginAPI = 'https://sevlabackend2.herokuapp.com/users/login';
-  const RegisterAPI = 'https://sevlabackend2.herokuapp.com/users/add';
+  const LoginAPI = 'https://onlybackend-745.herokuapp.com/users/login';
+  const RegisterAPI = 'https://onlybackend-745.herokuapp.com/users/add';
 
   // A method to switch page content between sign up or login
   const switchAuthModeHandler = () => {
