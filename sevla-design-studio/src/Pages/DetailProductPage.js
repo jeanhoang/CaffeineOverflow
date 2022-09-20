@@ -11,7 +11,7 @@ const DetailProductPage = () => {
   //Using useHistory() to take user back to shopping page
   const { push } = useHistory();
 
-  // Hook to get state from last page
+  // Hook to get state sent from last page
   const location = useLocation();
 
   const ProductName = location.state.product.ProductName;

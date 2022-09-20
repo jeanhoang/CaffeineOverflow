@@ -43,7 +43,7 @@ const AvailableProducts = () => {
   return (
     <section className={classes.products}>
       <Card>
-        <div>
+        <div data-testid="item-element">
           {displayProductList}
         </div>
       </Card>
