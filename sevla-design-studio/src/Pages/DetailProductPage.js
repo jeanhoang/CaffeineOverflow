@@ -1,85 +1,61 @@
-import { useParams, useHistory } from 'react-router-dom';
-
-
-import { useEffect, useState, useContext } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useContext } from 'react';
 
 import CartContext from '../store/cart-context';
 import ItemForm from '../components/Products/Items/ItemForm';
-
 import classes from './DetailProductPage.module.css';
 
-import axios from 'axios';
 
-const DetailProductPage = (props) => {
-
-  // A variable that holds the current cart state; the component is re-evaluated whenever it changes
-  const cartContext = useContext(CartContext);
-
-  //Look for the specific ProductName
-  const { ProductName, id, ProductPrice } = useParams();
-
-  //Initializing product list
-  const [productList, setProductList] = useState([]);
+const DetailProductPage = () => {
 
   //Using useHistory() to take user back to shopping page
   const { push } = useHistory();
 
-  //Calling getProduct() function
-  useEffect(() => getProduct(), []);
+  // Hook to get state from last page
+  const location = useLocation();
 
-  //API to retrieve a specific Product from the Product List
-  const detailProductAPI = `https://onlybackend-745.herokuapp.com/products/${ProductName}`;
+  const ProductName = location.state.product.ProductName;
+  const ProductID = location.state.product._id;
+  const ProductPrice = location.state.product.ProductPrice;
+  const ProductImg = location.state.product.ProductImg;
+  const ProductDescription = location.state.product.ProductDescription;
 
-  //Function to fetch the specific product from backend 
-  const getProduct = () => {
-    axios
-      .get(detailProductAPI)
-      .then(response => {
-        console.log(response.data)
-        setProductList(response.data);
-        console.log(ProductName);
-
-      }).catch(error => {
-        console.log(error);
-      })
-  }
+  // A variable that holds the current cart state; the component is re-evaluated whenever it changes
+  const cartContext = useContext(CartContext);
 
   // Adds an item to the cart
   // Called from ItemForm component by user form submission of adding a product to the cart
   const addToCartHandler = amount => {
     cartContext.addItem({
-      id: id,
+      id: ProductID,
       name: ProductName,
       amount: amount,
       price: ProductPrice
     });
   };
 
-
   return (
     <div className={classes.container}>
 
-      {productList.map((product) => (
-        <div className={classes.product} key={product._id}>
-          <div className={classes.gallery}>
-            <img src={product.ProductImg} alt='' />
-          </div>
-          <div className={classes.details}>
-            <h1>{product.ProductName}</h1>
-            <br></br>
-            <h2>${product.ProductPrice}</h2>
-            <br></br>
-            <p>{product.ProductDescription}</p>
-            <br></br>
-            <div>
-              <ItemForm id={product.id} onAddToCart={addToCartHandler} />
-            </div>
-            <form>
-              <button onClick={() => push("/shopping")}>Go back</button>
-            </form>
-          </div>
+      <div className={classes.product} key={ProductID}>
+        <div className={classes.gallery}>
+          <img src={ProductImg} alt='ProductImg' />
         </div>
-      ))}
+        <div className={classes.details}>
+          <h1>{ProductName}</h1>
+          <br></br>
+          <h2>${ProductPrice}</h2>
+          <br></br>
+          <p>{ProductDescription}</p>
+          <br></br>
+          <div>
+            <ItemForm id={ProductID} onAddToCart={addToCartHandler} />
+          </div>
+          <form>
+            <button onClick={() => push("/shopping")}>Go back</button>
+          </form>
+        </div>
+      </div>
 
     </div>
 

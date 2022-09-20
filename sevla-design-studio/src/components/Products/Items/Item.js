@@ -20,6 +20,7 @@ const Item = (props) => {
 
   const formattedPrice = `$${props.product.ProductPrice.toFixed(2)}`;
 
+  const productLink = `/products/${props.product.ProductName}`;
   // Adds an item to the cart
   // Called from ItemForm component by user form submission of adding a product to the cart
   const addToCartHandler = amount => {
@@ -36,7 +37,7 @@ const Item = (props) => {
   return (
     <div className={classes.item} key={props.product._id}>
       <div className='card'>
-        <h3><Link to={`/products/${props.product.ProductName}`} style={{ textDecoration: 'none' }}>{props.product.ProductName}</Link></h3>
+        <h3><Link to={{ pathname: productLink, state: { product: props.product } }} style={{ textDecoration: 'none' }}>{props.product.ProductName}</Link></h3>
         <div className={classes.description}>{props.product.ProductDescription}</div>
         <div className={classes.price}>{formattedPrice}</div>
         <img src={props.product.ProductImg} alt='' />
@@ -44,7 +45,7 @@ const Item = (props) => {
       <div>
         <ItemForm id={props.product._id} onAddToCart={addToCartHandler} />
       </div>
-    </div>
+    </div >
   );
 };
 
