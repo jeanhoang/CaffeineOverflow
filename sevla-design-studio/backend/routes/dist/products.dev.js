@@ -24,11 +24,11 @@ router.route('/send').get(function _callee(req, res, next) {
           _context.prev = 0;
           _req$query = req.query, page = _req$query.page, size = _req$query.size, sort = _req$query.sort; // If the page is not applied in query.
 
-          if (!page && page <= 0) {
+          if (!page || !page >= 0) {
             page = 1;
           }
 
-          if (!size && size <= 0) {
+          if (!size || !size >= 0) {
             size = 10;
           } //  We have to make it integer because query parameter passed is string
 
