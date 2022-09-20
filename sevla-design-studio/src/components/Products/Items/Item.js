@@ -30,7 +30,7 @@ const Item = (props) => {
       price: props.product.ProductPrice
     });
   };
-  
+
 
   // Returns a single product list item with a name, description, price, number input, and add to cart button
   return (
@@ -42,7 +42,7 @@ const Item = (props) => {
         <img src={props.product.ProductImg} alt='' />
       </div>
       <div>
-        <ItemForm id={props.product.id} onAddToCart={addToCartHandler} />
+        <ItemForm id={props.product._id} onAddToCart={addToCartHandler} />
       </div>
     </div>
   );
