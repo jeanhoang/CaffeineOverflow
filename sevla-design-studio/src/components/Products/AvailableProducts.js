@@ -36,18 +36,18 @@ const AvailableProducts = () => {
   }
 
   // A function that wraps each product in an Item component
-  const displayProductList = productList.map((product) => <Item key={product.id} product={product} />);
+  const displayProductList = productList.map((product) => <Item key={product._id} product={product} />);
 
 
   // Returns a product list wrapped in a card
   return (
-      <section className={classes.products}>
-        <Card>
-          <div>
-            {displayProductList}
-          </div>
-        </Card>
-      </section>
+    <section className={classes.products}>
+      <Card>
+        <div>
+          {displayProductList}
+        </div>
+      </Card>
+    </section>
   );
 };
 
