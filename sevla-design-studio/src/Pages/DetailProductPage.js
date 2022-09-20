@@ -1,4 +1,4 @@
-import { useParams, useHistory} from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 
 import { useEffect, useState, useContext } from 'react';
@@ -16,7 +16,7 @@ const DetailProductPage = (props) => {
   const cartContext = useContext(CartContext);
 
   //Look for the specific ProductName
-  const { ProductName, id, ProductPrice} = useParams();
+  const { ProductName, id, ProductPrice } = useParams();
 
   //Initializing product list
   const [productList, setProductList] = useState([]);
@@ -44,7 +44,7 @@ const DetailProductPage = (props) => {
       })
   }
 
-   // Adds an item to the cart
+  // Adds an item to the cart
   // Called from ItemForm component by user form submission of adding a product to the cart
   const addToCartHandler = amount => {
     cartContext.addItem({
@@ -75,7 +75,7 @@ const DetailProductPage = (props) => {
               <ItemForm id={product.id} onAddToCart={addToCartHandler} />
             </div>
             <form>
-              <button  onClick={() => push("/shopping")}>Go back</button>
+              <button onClick={() => push("/shopping")}>Go back</button>
             </form>
           </div>
         </div>

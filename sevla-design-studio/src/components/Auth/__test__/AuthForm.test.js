@@ -4,7 +4,7 @@ import { shallow, configure } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
 
-import AuthForm from './AuthForm';
+import AuthForm from '../AuthForm';
 
 configure({ adapter: new Adapter() });
 
