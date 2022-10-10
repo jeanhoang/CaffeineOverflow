@@ -18,7 +18,7 @@ const DetailProductPage = () => {
   const ProductID = location.state.product._id;
   const ProductPrice = location.state.product.ProductPrice;
   const ProductImg = location.state.product.ProductImg;
-  const ProductDescription = location.state.product.ProductDescription;
+  const ProductLongDescription = location.state.product.ProductLongDescription;
 
   // A variable that holds the current cart state; the component is re-evaluated whenever it changes
   const cartContext = useContext(CartContext);
@@ -46,7 +46,7 @@ const DetailProductPage = () => {
           <br></br>
           <h2>${ProductPrice}</h2>
           <br></br>
-          <p>{ProductDescription}</p>
+          <p>{ProductLongDescription}</p>
           <br></br>
           <div>
             <ItemForm id={ProductID} onAddToCart={addToCartHandler} />
