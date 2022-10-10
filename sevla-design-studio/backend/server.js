@@ -73,8 +73,8 @@ const productRouter = require('./routes/products');
 const { TEMPORARY_REDIRECT_STATUS } = require('next/dist/shared/lib/constants');
 app.use('/products', productRouter);
 
-// const stripeRouter = require('./routes/stripe');
-// app.use('/stripe', stripeRouter);
+const stripeRouter = require('./routes/stripe');
+app.use('/stripe', stripeRouter);
 
 ///////////////////////////////////////////////////////
 
@@ -86,56 +86,56 @@ app.listen(port, () => {
 
 ///////////////////////////////////
 
-//Handles stripe
-app.post("/stripe", cors(), async (req, res) => {
-  if (req.method === 'POST') {
+// //Handles stripe
+// app.post("/stripe", cors(), async (req, res) => {
+//   if (req.method === 'POST') {
 
-    //Define request body data
-    const data = req.body;
-    console.log(data);
+//     //Define request body data
+//     const data = req.body;
+//     console.log(data);
 
-    try {
-      //An array with different objects where quantity and price can be specified
-      const params = {
-        //Passing stripe elements
-        submit_type: 'pay',
-        mode: 'payment',
-        payment_method_types: ['card'],
-        billing_address_collection: 'auto',
-        //Extracting values from req.body
-        line_items: data.map((item) => {
-          return {
-            price_data: {
-              currency: 'CAD',
-              product_data: {
-                name: item.name,
-              },
-              unit_amount: Math.round(item.price * 100), //Make sure price is rounded for Stripe
-            },
-            //Allows user to adjust the quantity value in Stripe
-            adjustable_quantity: {
-              enabled: true,
-              minimum: 0,
-            },
-            quantity: item.amount
-          }
-        }),
-        mode: 'payment',
+//     try {
+//       //An array with different objects where quantity and price can be specified
+//       const params = {
+//         //Passing stripe elements
+//         submit_type: 'pay',
+//         mode: 'payment',
+//         payment_method_types: ['card'],
+//         billing_address_collection: 'auto',
+//         //Extracting values from req.body
+//         line_items: data.map((item) => {
+//           return {
+//             price_data: {
+//               currency: 'CAD',
+//               product_data: {
+//                 name: item.name,
+//               },
+//               unit_amount: Math.round(item.price * 100), //Make sure price is rounded for Stripe
+//             },
+//             //Allows user to adjust the quantity value in Stripe
+//             adjustable_quantity: {
+//               enabled: true,
+//               minimum: 0,
+//             },
+//             quantity: item.amount
+//           }
+//         }),
+//         mode: 'payment',
 
-        //Redirect to main page with success or canceled in URL
-        success_url: `${YOUR_DOMAIN}?success=true`,
-        cancel_url: `${YOUR_DOMAIN}?canceled=true`,
-      }
-      // Create Checkout Sessions from body params.
-      const session = await stripe.checkout.sessions.create(params);
-      //res.redirect(303, session.url);
-      //Define session to return
-      res.json({session: session});
+//         //Redirect to main page with success or canceled in URL
+//         success_url: `${YOUR_DOMAIN}?success=true`,
+//         cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+//       }
+//       // Create Checkout Sessions from body params.
+//       const session = await stripe.checkout.sessions.create(params);
+//       //res.redirect(303, session.url);
+//       //Define session to return
+//       res.json({session: session});
 
-    } catch (err) {
-      res.status(err.statusCode || 500).json(err.message);
-    }
-  }
-});
+//     } catch (err) {
+//       res.status(err.statusCode || 500).json(err.message);
+//     }
+//   }
+// });
 
 
