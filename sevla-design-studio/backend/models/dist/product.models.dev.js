@@ -6,38 +6,35 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema; // Create a new schema for products
 
 var productSchema = new schema({
-  // << VALUES TO BE CHANGED IN FUTURE >>
   ProductName: {
     type: String,
     required: true,
-    trim: true // minlength: 3
-
+    trim: true
   },
   ProductDescription: {
     type: String,
-    required: true // minlength: 6
-
+    required: true
+  },
+  ProductLongDescription: {
+    type: String,
+    required: true
   },
   ProductPrice: {
     type: Number,
-    required: true // minlength: 6
-
+    required: true
   },
   ProductSize: {
     type: String,
-    required: true // minlength: 6
-
+    required: true
   },
   ProductType: {
     type: String,
-    required: true // minlength: 6
-
+    required: true
   },
   ProductQuantity: {
     type: String,
     required: true,
-    trim: true // minlength: 3
-
+    trim: true
   },
   ProductImg: {
     type: Array,

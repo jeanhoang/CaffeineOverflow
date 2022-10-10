@@ -13,7 +13,6 @@ router.route('/').get((req, res) => {
 });
 
 
-
 // GET method for getting all the products at once with Pagination
 router.route('/send').get(async (req, res, next) => {
 
@@ -51,17 +50,12 @@ router.route('/send').get(async (req, res, next) => {
 });
 
 
-
-
-
-
-
-
 // POST method for adding a new product
 router.route('/add').post(async(req, res) => {
     try {
         const ProductName = req.body.ProductName;
         const ProductDescription = req.body.ProductDescription;
+        const ProductLongDescription = req.body.ProductLongDescription;
         const ProductPrice = req.body.ProductPrice;
         const ProductSize = req.body.ProductSize;
         const ProductType = req.body.ProductType;
@@ -69,8 +63,8 @@ router.route('/add').post(async(req, res) => {
         const ProductImg = req.body.ProductImg;
         
         
-
-        const newProduct = new Product({ProductName, ProductDescription, ProductPrice, ProductSize, ProductType, ProductQuantity, ProductImg});
+        
+        const newProduct = new Product({ProductName, ProductDescription, ProductLongDescription, ProductPrice, ProductSize, ProductType, ProductQuantity, ProductImg});
         newProduct.save()
         .then(() => res.json('Product added!'))
     }
@@ -78,8 +72,6 @@ router.route('/add').post(async(req, res) => {
         res.status(400).json('Error: ' + err);
     }
 });
-
-
 
 
 // GET method for finding an specific product
