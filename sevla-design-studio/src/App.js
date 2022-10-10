@@ -12,6 +12,7 @@ import AboutPage from './Pages/AboutPage';
 import AuthPage from './Pages/AuthPage';
 import DetailProductPage from './Pages/DetailProductPage';
 import HomePage from './Pages/HomePage';
+import PaymentSuccess from './Pages/PaymentSuccess';
 import Shopping from './Pages/Shopping';
 import AuthContext from './store/auth-context';
 
@@ -41,6 +42,9 @@ function App() {
               <Route path='/products/:ProductName' exact>
                   <DetailProductPage />
               </Route>
+              <Route path='/success' exact>
+                  <PaymentSuccess />
+              </Route>
               {ctx.isLoggedIn && (
                 <Route path='/profile'>
                   <UserProfile />
@@ -49,7 +53,6 @@ function App() {
               <Route path='*'>
                 <Redirect to='/' />
               </Route>
-              
             </Switch>
           </Layout>
         )

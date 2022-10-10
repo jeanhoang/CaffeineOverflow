@@ -1,7 +1,7 @@
 // Define the required variables for stripe
 const router = require('express').Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const YOUR_DOMAIN = 'http://localhost:3000/';
+const YOUR_DOMAIN = 'http://localhost:3000';
 
 
 //Handles stripe
@@ -41,7 +41,7 @@ router.route("/").post(async (req, res) => {
           mode: 'payment',
   
           //Redirect to main page with success or canceled in URL
-          success_url: `${YOUR_DOMAIN}?success=true`,
+          success_url: `${YOUR_DOMAIN}/success`,
           cancel_url: `${YOUR_DOMAIN}?canceled=true`,
         }
         // Create Checkout Sessions from body params.
