@@ -7,10 +7,14 @@ import { useReducer } from 'react';
 
 import CartContext from './cart-context';
 
+// Check local storage
+const previousCartItems = JSON.parse(localStorage.getItem('cartItems'));
+const previousCartTotal = JSON.parse(localStorage.getItem('totalAmount'));
+
 // Default values of the cart used for in the useReducer hook
 const defaultCartState = {
-  items: [],
-  totalAmount: 0,
+  items: previousCartItems ?? [],
+  totalAmount: previousCartTotal ?? 0,
 };
 
 // The reducer method in the useReducer hook that automatically recieves state and action variables 
@@ -41,6 +45,10 @@ const cartReducer = (state, action) => {
       // Concat method is used to create a new array since state should be treated as immutable
       updatedItems = state.items.concat(action.item);
     }
+
+    // Set local storage
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    localStorage.setItem('totalAmount', JSON.stringify(updatedTotalAmount));
 
     // Update state
     return {
@@ -73,6 +81,10 @@ const cartReducer = (state, action) => {
       updatedItems = [...state.items]; // Copy cart items array
       updatedItems[existingCartItemIndex] = updatedItem; // Update new array with new item
     }
+
+    // Set local storage
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    localStorage.setItem('totalAmount', JSON.stringify(updatedTotalAmount));
 
     // Update state
     return {

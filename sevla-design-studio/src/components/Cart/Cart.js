@@ -11,10 +11,6 @@ import Modal from '../UI/Modal';
 
 import classes from './Cart.module.css';
 
-//import getStripe from '../../lib/getStripe';
-import axios from 'axios';
-
-
 import getStripe from '../../lib/getStripe';
 
 // Forwards props method pointer for closing the cart modal from inside the App component
@@ -39,7 +35,7 @@ const Cart = (props) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(addedItems),  
+      body: JSON.stringify(addedItems),
     });
 
     //If there's an error, returns nothing
@@ -47,11 +43,11 @@ const Cart = (props) => {
 
     //Define data from the response body
     const data = await response.json();
-    
+
     console.log(addedItems);
 
     //Redirect to Stripe chekcout page from id retrieved from response body
-    stripe.redirectToCheckout({sessionId : data.session.id});
+    stripe.redirectToCheckout({ sessionId: data.session.id });
     console.log(data.session.id);
 
   }
