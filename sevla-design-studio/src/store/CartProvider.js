@@ -11,7 +11,7 @@ import CartContext from './cart-context';
 const previousCartItems = JSON.parse(localStorage.getItem('cartItems'));
 const previousCartTotal = JSON.parse(localStorage.getItem('totalAmount'));
 
-// Default values of the cart used for in the useReducer hook
+// Default values of the cart used for in the useReducer hook. Loads previous cart or creates an empty one.
 const defaultCartState = {
   items: previousCartItems ?? [],
   totalAmount: previousCartTotal ?? 0,
@@ -93,6 +93,14 @@ const cartReducer = (state, action) => {
     };
   }
 
+  if (action.type === 'CLEAR') {
+    // Update state
+    return {
+      items: [],
+      totalAmount: 0
+    };
+  }
+
   return defaultCartState;
 };
 
@@ -113,12 +121,18 @@ const CartProvider = (props) => {
     dispatchCartAction({ type: 'REMOVE', id: id });
   };
 
+  // A method to clear the cart using useReducer
+  const clearCartHandler = () => {
+    dispatchCartAction({ type: 'CLEAR' });
+  };
+
   // Holds current state of user cart
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
+    clearAll: clearCartHandler,
   };
 
   // Returns wrapper with all child elements having access to cart data
