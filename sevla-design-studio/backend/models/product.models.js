@@ -16,6 +16,10 @@ const productSchema = new schema({
         type: String,
         required: true
     },
+    ProductLongDescription: {
+        type: String,
+        required: true
+      },
     ProductPrice: {
         type: Number,
         required: true
