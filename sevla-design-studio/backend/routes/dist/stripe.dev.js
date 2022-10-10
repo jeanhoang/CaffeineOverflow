@@ -2,42 +2,7 @@
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// const router = require('express').Router();
-// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-// router.route('/stripe').post(cors(), async(req, res) => {
-//   if (req.method === 'POST') {
-//     console.log(req.body.cartItems);
-//     try {
-//         //An array with different objects where quantity and price can be specified
-//         const params = {
-//             //Passing stripe elements
-//             submit_type: 'pay',
-//             mode: 'payment',
-//             payment_method_types:['card'],
-//             billing_address_collection:'auto',
-//             //Passing the products from Cart
-//             line_items: [
-//               {
-//                 // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-//                 price: 10000,
-//                 quantity: 1,
-//               },
-//             ],
-//             mode: 'payment',
-//             success_url: `${req.headers.origin}/?success=true`,
-//             cancel_url: `${req.headers.origin}/?canceled=true`,
-//           }
-//       // Create Checkout Sessions from body params.
-//       const session = await stripe.checkout.sessions.create(params);
-//       res.redirect(303, session.url);
-//     } catch (err) {
-//       res.status(err.statusCode || 500).json(err.message);
-//     }
-//   } else {
-//     res.setHeader('Allow', 'POST');
-//     res.status(405).end('Method Not Allowed');
-//   }
-// });
+// Define the required variables for stripe
 var router = require('express').Router();
 
 var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -93,7 +58,6 @@ router.route("/").post(function _callee(req, res) {
 
         case 7:
           session = _context.sent;
-          //res.redirect(303, session.url);
           //Define session to return
           res.json({
             session: session
