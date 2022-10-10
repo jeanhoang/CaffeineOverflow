@@ -11,12 +11,50 @@ import Modal from '../UI/Modal';
 
 import classes from './Cart.module.css';
 
+//import getStripe from '../../lib/getStripe';
+import axios from 'axios';
+
+
+import getStripe from '../../lib/getStripe';
+
 // Forwards props method pointer for closing the cart modal from inside the App component
 const Cart = (props) => {
   // A variable that holds the current cart state; the component is re-evaluated whenever it changes
   const cartContext = useContext(CartContext);
   const totalAmountFormatted = `$${cartContext.totalAmount.toFixed(2)}`
   const hasItems = cartContext.items.length > 0; // A variable used to hide the order button if the cart is empty
+
+  //A function to load Stripe instance, send a POST request along with the response body
+  //Redirect to Stripe checkout page upon clicking "Order"
+  const handleCheckout = async () => {
+    //Calling stripe instance
+    const stripe = await getStripe();
+
+    //Define items that are added to cart
+    const addedItems = cartContext.items;
+
+    //Sending POST request to the backend along with the response body
+    const response = await fetch('http://localhost:5000/stripe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(addedItems),  
+    });
+
+    //If there's an error, returns nothing
+    if (response.statusCode === 500) return;
+
+    //Define data from the response body
+    const data = await response.json();
+    
+    console.log(addedItems);
+
+    //Redirect to Stripe chekcout page from id retrieved from response body
+    stripe.redirectToCheckout({sessionId : data.session.id});
+    console.log(data.session.id);
+
+  }
 
   // A method that increases the item count by 1
   const cartItemAddHandler = (item) => {
@@ -28,8 +66,7 @@ const Cart = (props) => {
     cartContext.removeItem(id);
   };
 
-  // A variable used to store a list of cart items
-  // Forwards props method pointer for adding and removing item
+
   const cartItems = (
     <ul className={classes['cart-items']}>
       {cartContext.items.map((item) => (
@@ -55,7 +92,10 @@ const Cart = (props) => {
       </div>
       <div className={classes.actions}>
         <button onClick={props.onClose} className={classes['button--alt']}>Close</button>
-        {hasItems && <button className={classes.button}>Order</button>}
+        {hasItems &&
+          //Order button
+          //Calling a function called handleCheckout
+          <button className={classes.button} onClick={handleCheckout}>Order</button>}
       </div>
     </Modal>
   )
