@@ -3,6 +3,7 @@ import { BsBagCheckFill } from 'react-icons/bs';
 import classes from './PaymentSuccess.module.css';
 import { Link } from "react-router-dom";
 import CartContext from '../store/cart-context';
+import Confetti from 'react-confetti'
 
 const PaymentSuccess = () => {
 
@@ -20,9 +21,11 @@ const PaymentSuccess = () => {
     localStorage.removeItem('cartItems');
     localStorage.removeItem('totalAmount');
 
+    //const { width, height } = useWindowSize()
+
     return (
         <div className={classes.successWrapper}>
-
+            <Confetti recycle={false} numberOfPieces={400} />
             <div className={classes.success}>
                 <p className={classes.icon}>
                     <BsBagCheckFill />
