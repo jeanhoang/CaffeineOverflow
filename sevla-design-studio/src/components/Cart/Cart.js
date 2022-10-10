@@ -15,6 +15,9 @@ import getStripe from '../../lib/getStripe';
 
 // Forwards props method pointer for closing the cart modal from inside the App component
 const Cart = (props) => {
+  // Payment API
+  const stripeAPI = 'http://localhost:5000/stripe';
+
   // A variable that holds the current cart state; the component is re-evaluated whenever it changes
   const cartContext = useContext(CartContext);
   const totalAmountFormatted = `$${cartContext.totalAmount.toFixed(2)}`
@@ -30,7 +33,7 @@ const Cart = (props) => {
     const addedItems = cartContext.items;
 
     //Sending POST request to the backend along with the response body
-    const response = await fetch('http://localhost:5000/stripe', {
+    const response = await fetch(stripeAPI, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

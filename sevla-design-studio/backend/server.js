@@ -10,8 +10,6 @@ const bodyParser = require('body-parser')
 const app = express();
 const port = process.env.PORT || 5000;
 
-const YOUR_DOMAIN = 'http://localhost:3000/';
-
 //Define a stripe instance
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
