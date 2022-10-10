@@ -39,7 +39,7 @@ const DetailProductPage = () => {
 
       <div className={classes.product} key={ProductID}>
         <div className={classes.gallery}>
-          <img src={ProductImg} alt='ProductImg' />
+          <img src={ProductImg} alt={ProductName} />
         </div>
         <div className={classes.details}>
           <h1>{ProductName}</h1>

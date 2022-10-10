@@ -23,7 +23,7 @@
 
 .gallery {
   flex-basis: 47%;
-  transform: scale(1.08);
+  transform: scale(1.25);
   box-shadow: -10px 5px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -57,15 +57,20 @@
 }
 
 form button {
+  margin-top: 25px;
+  width: 100%;
+  cursor: pointer;
+  font: inherit;
   background: plum;
   color: #fff;
-  font-size: 17px;
-  width: 100%;
-  border-radius: 30px;
-  border: 0;
-  outline: 0;
-  margin-top: 50px;
-  box-shadow: 0 10px 10px rgba(85, 63, 240, 0.25);
-  cursor: pointer;
+  border: 1px solid rgba(187, 138, 187);
+  padding: 0.25rem 2rem;
+  border-radius: 20px;
+  font-weight: bold;
+}
 
+form button:hover,
+form button:active {
+  background-color: rgba(187, 138, 187);;
+  border-color: #000000;
 }
