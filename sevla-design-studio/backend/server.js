@@ -13,9 +13,12 @@ const port = process.env.PORT || 5000;
 //Define a stripe instance
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
+// Set cors policy
+const domain = 'https://euphonious-empanada-5e6776.netlify.app';
+const paymentProcessor = "https://checkout.stripe.com";
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://checkout.stripe.com"],
+    origin: [domain, paymentProcessor],
   })
 );
 

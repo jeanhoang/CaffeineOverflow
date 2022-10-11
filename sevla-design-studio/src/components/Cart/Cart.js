@@ -16,7 +16,7 @@ import getStripe from '../../lib/getStripe';
 // Forwards props method pointer for closing the cart modal from inside the App component
 const Cart = (props) => {
   // Payment API
-  const stripeAPI = 'http://localhost:5000/stripe';
+  const stripeAPI = 'https://copytester-344.herokuapp.com/stripe';
 
   // A variable that holds the current cart state; the component is re-evaluated whenever it changes
   const cartContext = useContext(CartContext);

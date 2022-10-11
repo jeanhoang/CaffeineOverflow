@@ -1,7 +1,7 @@
 // Define the required variables for stripe
 const router = require('express').Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const domain = 'http://localhost:3000';
+const domain = 'https://euphonious-empanada-5e6776.netlify.app';
 
 
 //Handles stripe
