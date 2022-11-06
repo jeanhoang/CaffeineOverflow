@@ -17,7 +17,7 @@ const AvailableProducts = () => {
   const [productList, setProductList] = useState([]);
 
   //API to retrieve product list from backend
-  const getProductListAPI = 'https://copytester-344.herokuapp.com/products';
+  const getProductListAPI = process.env.REACT_APP_GET_ALL_PRODUCTS_API;
 
   //Calling getProductList() function
   useEffect(() => getProductList(), []);

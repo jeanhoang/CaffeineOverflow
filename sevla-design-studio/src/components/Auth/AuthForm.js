@@ -33,8 +33,8 @@ const AuthForm = () => {
   const invalidPasswordMatch = "Passwords do not match.";
 
   // REST API URLs
-  const LoginAPI = 'https://copytester-344.herokuapp.com/users/login';
-  const RegisterAPI = 'https://copytester-344.herokuapp.com/users/add';
+  const LoginAPI = process.env.REACT_APP_LOGIN_API;
+  const RegisterAPI = process.env.REACT_APP_REGISTER_API;
 
   // A method to switch page content between sign up or login
   const switchAuthModeHandler = () => {
