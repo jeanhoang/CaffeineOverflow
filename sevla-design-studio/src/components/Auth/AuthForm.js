@@ -13,7 +13,9 @@ import classes from './AuthForm.module.css';
 const AuthForm = () => {
 
   const authCtx = useContext(AuthContext); // Hook to set or get user account info
-  const history = useNavigate(); // Hook to redirect the user to another page
+  const navigate = useNavigate(); // Hook to redirect the user to another page
+
+
 
   // Manage page content
   const [isLogin, setIsLogin] = useState(true);
@@ -63,7 +65,7 @@ const AuthForm = () => {
           // In the future, the server will send a token (unique string) for authentication. 
           // Currently this feature is not supported yet so the username is used as a placeholder.
           authCtx.login(user.username);
-          history.replace('/profile'); // Redirect back to profile page after successful login
+          navigate('/profile'); // Redirect back to profile page after successful login
         }
         else if (response.data === "Wrong password") {
           setStatusMsg(invalidLoginPassword);

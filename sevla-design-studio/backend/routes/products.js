@@ -6,12 +6,19 @@ let Product = require('../models/product.models');
 
 
 // For development purposes only
-router.route('/').get((req, res) => {
+router.route('/').get(async(req, res) => {
+    const total = await Product.count({});
+    res.set({
+        'X-Total-Count': total,
+        'Access-Control-Expose-Headers': 'X-Total-Count'
+    })
     Product.find()
-    .then(products => res.json(products))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+    .then(products =>res.json(products)
 
+    ) 
+    .catch(err => res.status(400).json('Error: ' + err));
+    console.log(JSON.stringify(req.headers));
+});
 
 // GET method for getting all the products at once with Pagination
 router.route('/send').get(async (req, res, next) => {
@@ -61,8 +68,6 @@ router.route('/add').post(async(req, res) => {
         const ProductType = req.body.ProductType;
         const ProductQuantity = req.body.ProductQuantity;
         const ProductImg = req.body.ProductImg;
-        
-        
         
         const newProduct = new Product({ProductName, ProductDescription, ProductLongDescription, ProductPrice, ProductSize, ProductType, ProductQuantity, ProductImg});
         newProduct.save()
