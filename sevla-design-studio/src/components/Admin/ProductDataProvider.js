@@ -11,7 +11,6 @@ const dataProvider = {
             range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
         };
         const url = `${BackendURL}/${resource}?${stringify(query)}`;
-        console.log(url);
         return httpClient(url).then(({ headers, json }) => ({
             data: json.map(resource => ({ ...resource, id: resource._id })),
             total: parseInt(headers.get('X-Total-Count').split('/').pop(), 10)
@@ -19,7 +18,7 @@ const dataProvider = {
     },
 
     update: (resource, params) =>
-        httpClient(`${BackendURL}/${resource}/${params.id}`, {
+        httpClient(`${BackendURL}/${resource}/${params._id}`, {
             method: 'PUT',
             body: JSON.stringify(params.data),
         }).then(({ json }) => ({ data: json })),
@@ -29,11 +28,11 @@ const dataProvider = {
             method: 'POST',
             body: JSON.stringify(params.data),
         }).then(({ json }) => ({
-            data: { ...params.data, id: json.id },
+            data: { ...params.data, id: json._id },
         })),
 
     delete: (resource, params) =>
-        httpClient(`${BackendURL}/${resource}/${params.id}`, {
+        httpClient(`${BackendURL}/${resource}/${params._id}`, {
             method: 'DELETE',
         }).then(({ json }) => ({ data: json })),
 }
