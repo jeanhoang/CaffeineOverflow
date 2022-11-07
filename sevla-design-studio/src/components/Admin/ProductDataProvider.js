@@ -18,7 +18,7 @@ const dataProvider = {
     },
 
     update: (resource, params) =>
-        httpClient(`${BackendURL}/${resource}/${params._id}`, {
+        httpClient(`${BackendURL}/${resource}/${params.ProductName}`, {
             method: 'PUT',
             body: JSON.stringify(params.data),
         }).then(({ json }) => ({ data: json })),
@@ -32,7 +32,7 @@ const dataProvider = {
         })),
 
     delete: (resource, params) =>
-        httpClient(`${BackendURL}/${resource}/${params._id}`, {
+        httpClient(`${BackendURL}/${resource}/${params.ProductName}`, {
             method: 'DELETE',
         }).then(({ json }) => ({ data: json })),
 }
