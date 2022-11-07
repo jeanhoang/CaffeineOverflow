@@ -4,7 +4,7 @@
 * It also uses the Context hook to access the current user data (if any).
 */
 
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Route, Navigate, Routes } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
@@ -26,38 +26,22 @@ function App() {
       {(ctx) => {
         return (
           <Layout>
-            <Switch>
-              <Route path='/' exact>
-                <HomePage />
-              </Route>
-              <Route path='/about' exact>
-                <AboutPage />
-              </Route>
-              <Route path='/shopping' exact>
-                <Shopping />
-              </Route>
-              <Route path='/auth'>
-                <AuthPage />
-              </Route>
-              <Route path='/products/:ProductName' exact>
-                  <DetailProductPage />
-              </Route>
-              <Route path='/success' exact>
-                  <PaymentSuccess />
-              </Route>
+            <Routes>
+              <Route path='/' element={<HomePage />} />
+              <Route path='/about' element={<AboutPage />} />
+              <Route path='/shopping' element={<Shopping />} />
+              <Route path='/auth' element={<AuthPage />} />
+              <Route path='/products/:ProductName' element={<DetailProductPage />} />
+              <Route path='/success' element={<PaymentSuccess />} />
               {ctx.isLoggedIn && (
-                <Route path='/profile'>
-                  <UserProfile />
-                </Route>
+                <Route path='/profile' element={<UserProfile />} />
               )}
-              <Route path='*'>
-                <Redirect to='/' />
-              </Route>
-            </Switch>
+              <Route path='*' element={<Navigate replace to="/" />} />
+            </Routes>
           </Layout>
         )
       }}
-    </AuthContext.Consumer>
+    </AuthContext.Consumer >
   );
 }
 

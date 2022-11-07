@@ -5,7 +5,7 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
 
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import AuthContext from '../../store/auth-context';
 import classes from './AuthForm.module.css';
@@ -13,7 +13,7 @@ import classes from './AuthForm.module.css';
 const AuthForm = () => {
 
   const authCtx = useContext(AuthContext); // Hook to set or get user account info
-  const history = useHistory(); // Hook to redirect the user to another page
+  const history = useNavigate(); // Hook to redirect the user to another page
 
   // Manage page content
   const [isLogin, setIsLogin] = useState(true);
