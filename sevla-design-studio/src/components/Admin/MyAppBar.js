@@ -2,10 +2,8 @@ import React from 'react'
 import { AppBar } from 'react-admin'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
-import IconButton from '@material-ui/core/IconButton'
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import LogoutIcon from '@mui/icons-material/Logout';
 import Toolbar from '@material-ui/core/Toolbar';
 import logo from '../../assets/logo.png';
 

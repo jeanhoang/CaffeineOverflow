@@ -1,10 +1,9 @@
 import * as React from "react";
 import { Admin, Resource } from 'react-admin';
 import ProductsList from "../components/Admin/AdminProductList";
-import dataProvider from "../components/Products/ProductDataProvider";
+import dataProvider from "../components/Admin/ProductDataProvider";
 import ProductsCreate from "../components/Admin/AdminProductCreate";
 import MyLayout from "../components/Admin/MyLayout";
-
 
 const productData = dataProvider;
 
