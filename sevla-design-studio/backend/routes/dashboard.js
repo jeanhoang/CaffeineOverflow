@@ -37,6 +37,8 @@ router.route('/add').post(async(req, res) => {
         const newProduct = new Product({ProductName, ProductDescription, ProductLongDescription, ProductPrice, ProductSize, ProductType, ProductQuantity, ProductImg});
         newProduct.save()
         .then(() => res.json('Product added!'))
+
+
     }
     catch {
         res.status(400).json('Error: ' + err);
@@ -50,6 +52,32 @@ router.route('/delete/:ProductName').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 
 });
+
+
+
+// PUT method for updating a product
+router.route('/update/:ProductName').put(async(req, res) => {
+    try {
+        const ProductName = req.body.ProductName;
+        const ProductDescription = req.body.ProductDescription;
+        const ProductLongDescription = req.body.ProductLongDescription;
+        const ProductPrice = req.body.ProductPrice;
+        const ProductSize = req.body.ProductSize;
+        const ProductType = req.body.ProductType;
+        const ProductQuantity = req.body.ProductQuantity;
+        const ProductImg = req.body.ProductImg;
+        
+
+        Product.updateOne({ProductName: req.params['ProductName']}, {$set: {ProductName: ProductName, ProductDescription: ProductDescription, ProductLongDescription: ProductLongDescription, ProductPrice: ProductPrice, ProductSize: ProductSize, ProductType: ProductType, ProductQuantity: ProductQuantity, ProductImg: [ProductImg]}})
+        .then(product => res.json(product))
+        .catch(err => res.status(400).json('Error: ' + err));
+
+    }
+    catch {
+        res.status(400).json('Error: ' + err);
+    }
+});
+
 
 
 // Export the router to the module
