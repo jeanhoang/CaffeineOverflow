@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event'
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { BrowserRouter } from 'react-router-dom';
+
 
 import AuthForm from '../AuthForm';
 
@@ -13,13 +15,13 @@ describe(AuthForm, () => {
 
     // Verify the AuthForm component renders 
     it("Renders AuthForm", () => {
-        const wrapper = shallow(<AuthForm />)
+        const wrapper = shallow(<BrowserRouter><AuthForm /></BrowserRouter>)
     })
 
-    // Verify the correct state renders 
+    //Verify the correct state renders
     test('Renders login page on load', () => {
         //Arrange
-        render(<AuthForm />);
+        render(<BrowserRouter><AuthForm /></BrowserRouter>);
         //Act
         //...
         //Assert
@@ -30,7 +32,7 @@ describe(AuthForm, () => {
     // Verify the state updates correctly
     test('Renders register user page on button click', () => {
         //Arrange
-        render(<AuthForm />);
+        render(<BrowserRouter><AuthForm /></BrowserRouter>);
         //Act
         const buttonElement = screen.getByText("Create new account");
         userEvent.click(buttonElement);
