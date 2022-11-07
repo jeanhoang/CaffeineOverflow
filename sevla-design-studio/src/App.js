@@ -15,6 +15,7 @@ import HomePage from './Pages/HomePage';
 import PaymentSuccess from './Pages/PaymentSuccess';
 import Shopping from './Pages/Shopping';
 import AuthContext from './store/auth-context';
+import AdminDashboard from './Pages/AdminDashboard';
 
 
 function App() {
@@ -33,10 +34,11 @@ function App() {
               <Route path='/auth' element={<AuthPage />} />
               <Route path='/products/:ProductName' element={<DetailProductPage />} />
               <Route path='/success' element={<PaymentSuccess />} />
+              <Route path='/admin/*' element={<AdminDashboard />} />
               {ctx.isLoggedIn && (
                 <Route path='/profile' element={<UserProfile />} />
               )}
-              <Route path='*' element={<Navigate replace to="/" />} />
+              {/* <Route path='*' element={<Navigate replace to="/" />} />  */}
             </Routes>
           </Layout>
         )
