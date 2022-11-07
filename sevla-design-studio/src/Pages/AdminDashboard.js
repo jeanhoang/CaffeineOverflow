@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Admin, Resource, EditGuesser } from 'react-admin';
+import { Admin, Resource } from 'react-admin';
 import ProductsList from "../components/Products/AdminProductList";
 import dataProvider from "../components/Products/ProductDataProvider";
 import ProductsCreate from "../components/Products/AdminProductCreate";
