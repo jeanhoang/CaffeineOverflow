@@ -6,6 +6,7 @@
   
   .control {
     margin-bottom: 0.5rem;
+    margin-top: 60px;
   }
   
   .control label {
@@ -25,10 +26,6 @@
     background-color: #f7f0fa;
   }
   
-  .action {
-    margin-top: 1.5rem;
-  }
-  
   .action button {
     font: inherit;
     cursor: pointer;
@@ -37,9 +34,30 @@
     background-color: #38015c;
     color: white;
     border: 1px solid #38015c;
+    margin-bottom: 30px;
   }
   
   .action button:hover {
+    background-color: #540d83;
+    border-color: #540d83;
+  }
+
+  .action a {
+    text-align: center;
+    display:block;
+    width: 100%;
+    text-decoration: none;
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    background-color: #38015c;
+    color: white;
+    border: 1px solid #38015c;
+    margin: 40px 0px;
+  }
+
+  .action a:hover {
     background-color: #540d83;
     border-color: #540d83;
   }
