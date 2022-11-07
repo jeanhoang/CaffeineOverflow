@@ -34,11 +34,13 @@ function App() {
               <Route path='/auth' element={<AuthPage />} />
               <Route path='/products/:ProductName' element={<DetailProductPage />} />
               <Route path='/success' element={<PaymentSuccess />} />
-              <Route path='/admin/*' element={<AdminDashboard />} />
               {ctx.isLoggedIn && (
                 <Route path='/profile' element={<UserProfile />} />
               )}
-              {/* <Route path='*' element={<Navigate replace to="/" />} />  */}
+              {ctx.token === 'sysadmin' && (
+                <Route path='/admin/*' element={<AdminDashboard />} />
+              )}
+              <Route path='*' element={<Navigate replace to="/" />} />
             </Routes>
           </Layout>
         )

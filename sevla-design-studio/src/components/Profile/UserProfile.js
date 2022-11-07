@@ -12,7 +12,7 @@ const UserProfile = () => {
     <section className={classes.profile}>
       <h1>Your User Profile</h1>
       <ProfileForm />
-      {username == 'sysadmin' ? adminLink : ' '}
+      {username === 'sysadmin' && (adminLink)}
     </section>
   );
 };

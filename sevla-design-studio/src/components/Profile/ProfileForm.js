@@ -25,7 +25,7 @@ const ProfileForm = () => {
         <h1>Welcome, {username}</h1>
         <div className={classes.control}>
           <label htmlFor='new-password'>New Password</label>
-          <input type='password' id='new-password' minLength="7" ref={newPasswordInputRef} />
+          <input type='password' id='new-password' minLength="8" ref={newPasswordInputRef} />
         </div>
         <div className={classes.action}>
           <button>Change Password</button>

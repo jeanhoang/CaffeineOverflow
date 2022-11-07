@@ -8,10 +8,10 @@ import ProductsCreate from "../components/Products/AdminProductCreate";
 const productData = dataProvider;
 
 const AdminDashboard = () => (
-    <Admin dataProvider={productData}>
-         <Resource name="products" list={ProductsList} create={ProductsCreate}/>
+    <Admin basename="/admin" dataProvider={productData}>
+        <Resource name="products" list={ProductsList} create={ProductsCreate} />
     </Admin>
 );
-   
+
 
 export default AdminDashboard;
