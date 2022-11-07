@@ -52,6 +52,10 @@ app.use('/products', productRouter);
 const stripeRouter = require('./routes/stripe');
 app.use('/stripe', stripeRouter);
 
+// Define dashboard and use it
+const dashboardRouter = require('./routes/dashboard');
+app.use('/dashboard', dashboardRouter);
+
 ///////////////////////////////////////////////////////
 
 

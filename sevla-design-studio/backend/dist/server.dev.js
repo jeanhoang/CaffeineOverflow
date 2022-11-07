@@ -13,13 +13,15 @@ var bodyParser = require('body-parser'); // Initialize the backend with the serv
 
 
 var app = express();
-var port = process.env.PORT || 5000;
-var YOUR_DOMAIN = 'http://localhost:3000/'; //Define a stripe instance
+var port = process.env.PORT || 5000; //Define a stripe instance
 
-var stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+var stripe = require("stripe")(process.env.STRIPE_SECRET_KEY); // Set cors policy
 
+
+var domain = process.env.DOMAIN;
+var paymentProcessor = process.env.PAYMENT_PROCESSOR;
 app.use(cors({
-  origin: ["http://localhost:3000", "https://checkout.stripe.com"]
+  origin: [domain, paymentProcessor]
 }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({
@@ -49,7 +51,11 @@ app.use('/products', productRouter); // Define Stripe and use it
 
 var stripeRouter = require('./routes/stripe');
 
-app.use('/stripe', stripeRouter); ///////////////////////////////////////////////////////
+app.use('/stripe', stripeRouter); // Define dashboard and use it
+
+var dashboardRouter = require('./routes/dashboard');
+
+app.use('/dashboard', dashboardRouter); ///////////////////////////////////////////////////////
 // check connection for development puposes
 
 app.listen(port, function () {
