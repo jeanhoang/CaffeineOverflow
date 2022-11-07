@@ -47,12 +47,8 @@ const Cart = (props) => {
     //Define data from the response body
     const data = await response.json();
 
-    console.log(addedItems);
-
     //Redirect to Stripe chekcout page from id retrieved from response body
     stripe.redirectToCheckout({ sessionId: data.session.id });
-    console.log(data.session.id);
-
   }
 
   // A method that increases the item count by 1

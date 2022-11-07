@@ -4,6 +4,7 @@
 */
 
 import { Fragment, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Header from './Header';
 import Footer from './Footer'
@@ -12,6 +13,7 @@ import CartProvider from '../../store/CartProvider';
 
 const Layout = (props) => {
 
+  const location = useLocation();
   // Hook used to manage the state of the page for displaying the cart
   const [cartIsShown, setCartIsShown] = useState(false);
 
@@ -27,16 +29,24 @@ const Layout = (props) => {
 
   // Returns default page layout of the site
   // CartProvider manages and shares cart data, it does not render any UI components
-  return (
-    <Fragment>
-      <CartProvider>
-        {cartIsShown && <Cart onClose={hideCartHandler} />}
-        <Header onShowCart={showCartHandler} />
+  if (location.pathname.includes("/admin/")) {
+    return (
+      <main>
         <main>{props.children}</main>
-      </CartProvider>
-      <Footer />
-    </Fragment>
-  );
-};
+      </main>
+    )
+  } else {
+    return (
+      <Fragment>
+        <CartProvider>
+          {cartIsShown && <Cart onClose={hideCartHandler} />}
+          <Header onShowCart={showCartHandler} />
+          <main>{props.children}</main>
+        </CartProvider>
+        <Footer />
+      </Fragment>
+    );
+  };
+}
 
 export default Layout;
