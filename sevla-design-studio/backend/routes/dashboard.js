@@ -51,13 +51,19 @@ router.route('/add').post(async (req, res) => {
 });
 
 // POST method for deleting an specific product
-router.route('/delete/:ProductName').post((req, res) => {
+router.route('/delete/:ProductName').delete((req, res) => {
     Product.deleteOne({ ProductName: req.params['ProductName'] })
         .then(product => res.json(product))
         .catch(err => res.status(400).json('Error: ' + err));
 
 });
 
+// POST method for deleting many products
+router.route('/deleteMany/:ProductName').post((req, res) => {
+    Product.deleteMany({ ProductName: req.params['ProductName'] })
+        .then(product => res.json(product))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 
 
 // PUT method for updating a product
