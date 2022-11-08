@@ -12,7 +12,7 @@ const ProfileForm = () => {
 
   const adminLink =
     <div className={classes.action}>
-      <Link to='/admin/products' className={classes.action}>Admin Dashboard</Link>
+      <Link to='/admin/dashboard' className={classes.action}>Admin Dashboard</Link>
     </div>
 
   // //To impliment Post request for updating user password

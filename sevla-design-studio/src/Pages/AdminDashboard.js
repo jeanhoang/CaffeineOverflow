@@ -9,7 +9,7 @@ const productData = dataProvider;
 
 const AdminDashboard = () => (
     <Admin basename="/admin" layout={MyLayout} dataProvider={productData}>
-        <Resource name="products" list={ProductsList} create={ProductsCreate} />
+        <Resource name="dashboard" list={ProductsList} create={ProductsCreate} />
     </Admin>
 );
 
