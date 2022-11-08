@@ -37,7 +37,7 @@ const Item = (props) => {
   return (
     <div className={classes.item} key={props.product._id}>
       <div className='card'>
-        <h3><Link to={{ pathname: productLink, state: { product: props.product } }} style={{ textDecoration: 'none' }}>{props.product.ProductName}</Link></h3>
+        <h3><Link to={productLink} state={props.product} style={{ textDecoration: 'none' }}>{props.product.ProductName}</Link></h3>
         <div className={classes.description}>{props.product.ProductDescription}</div>
         <div className={classes.price}>{formattedPrice}</div>
         <img src={props.product.ProductImg} alt={props.product.ProductName} width="250" />

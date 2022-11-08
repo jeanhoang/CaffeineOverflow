@@ -9,7 +9,6 @@ router.route("/").post(async (req, res) => {
 
     //Define request body data
     const data = req.body;
-    console.log(data);
 
     try {
       //An array with different objects where quantity and price can be specified

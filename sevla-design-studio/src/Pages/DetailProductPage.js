@@ -14,11 +14,11 @@ const DetailProductPage = () => {
   // Hook to get state sent from last page
   const location = useLocation();
 
-  const ProductName = location.state.product.ProductName;
-  const ProductID = location.state.product._id;
-  const ProductPrice = location.state.product.ProductPrice;
-  const ProductImg = location.state.product.ProductImg;
-  const ProductLongDescription = location.state.product.ProductLongDescription;
+  const ProductName = location.state.ProductName;
+  const ProductID = location.state._id;
+  const ProductPrice = location.state.ProductPrice;
+  const ProductImg = location.state.ProductImg;
+  const ProductLongDescription = location.state.ProductLongDescription;
 
   // A variable that holds the current cart state; the component is re-evaluated whenever it changes
   const cartContext = useContext(CartContext);

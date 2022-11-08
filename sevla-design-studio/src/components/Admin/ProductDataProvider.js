@@ -44,7 +44,6 @@ const dataProvider = {
         const query = {
             filter: JSON.stringify({ id: params.ids }),
         };
-        console.log(params.ids);
         return httpClient(`${BackendURL}/${resource}/deleteMany?${stringify(query)}`, {
             method: 'DELETE',
             body: JSON.stringify(params.data),
