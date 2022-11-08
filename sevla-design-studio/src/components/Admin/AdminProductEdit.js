@@ -7,16 +7,20 @@ import {
 } from 'react-admin';
 
 const ProductsEdit = () => {
-  return (
-    <Edit>
-        <SimpleForm>
-            <TextInput disabled source="_id" />
-            <ReferenceInput source="_id" reference="dashboard" />
-            <TextInput source="ProductName" />
-            <TextInput multiline source="body" />
-        </SimpleForm>
-    </Edit>
-  )
+    return (
+        <Edit>
+            <SimpleForm>
+                <TextInput source="ProductName" />
+                <TextInput multiline source="ProductDescription" />
+                <TextInput multiline source="ProductLongDescription" />
+                <TextInput source="ProductPrice" />
+                <TextInput source="ProductSize" />
+                <TextInput source="ProductType" />
+                <TextInput source="ProductQuantity" />
+                <TextInput source="ProductImg" />
+            </SimpleForm>
+        </Edit>
+    )
 }
 
 export default ProductsEdit;

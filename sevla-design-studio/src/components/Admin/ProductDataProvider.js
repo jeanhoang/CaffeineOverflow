@@ -25,7 +25,7 @@ const dataProvider = {
         httpClient(`${BackendURL}/${resource}/update/${params.id}`, {
             method: 'PUT',
             body: JSON.stringify(params.data),
-        }).then(({ json }) => ({ data: json })),
+        }).then(({ json }) => ({ data: { ...params.data, id: json.id } })),
 
     create: (resource, params) =>
         httpClient(`${BackendURL}/${resource}/add`, {
@@ -44,6 +44,7 @@ const dataProvider = {
         const query = {
             filter: JSON.stringify({ id: params.ids }),
         };
+        console.log(params.ids);
         return httpClient(`${BackendURL}/${resource}/deleteMany?${stringify(query)}`, {
             method: 'DELETE',
             body: JSON.stringify(params.data),
