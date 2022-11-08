@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,9 +8,6 @@ import classes from './DetailProductPage.module.css';
 
 
 const DetailProductPage = () => {
-
-  //Using useHistory() to take user back to shopping page
-  const { push } = useNavigate();
 
   // Hook to get state sent from last page
   const location = useLocation();
