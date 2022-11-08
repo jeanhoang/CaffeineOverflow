@@ -59,8 +59,8 @@ router.route('/delete/:ProductName').delete((req, res) => {
 });
 
 // POST method for deleting many products
-router.route('/deleteMany/:ProductName').post((req, res) => {
-    Product.deleteMany({ ProductName: req.params['ProductName'] })
+router.route('/deleteMany').delete((req, res) => {
+    Product.deleteMany({ ProductName: {$in: req.body.id} })
         .then(product => res.json(product))
         .catch(err => res.status(400).json('Error: ' + err));
 });

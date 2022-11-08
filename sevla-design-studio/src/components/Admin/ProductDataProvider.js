@@ -41,12 +41,9 @@ const dataProvider = {
         }).then(({ json }) => ({ data: json })),
 
     deleteMany: (resource, params) => {
-        const query = {
-            filter: JSON.stringify({ id: params.ids }),
-        };
-        return httpClient(`${BackendURL}/${resource}/deleteMany?${stringify(query)}`, {
+        return httpClient(`${BackendURL}/${resource}/deleteMany`, {
             method: 'DELETE',
-            body: JSON.stringify(params.data),
+            body: JSON.stringify({ id: params.ids }),
         }).then(({ json }) => ({ data: json }));
     },
 }
