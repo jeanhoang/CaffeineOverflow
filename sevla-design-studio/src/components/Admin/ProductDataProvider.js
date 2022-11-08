@@ -18,7 +18,7 @@ const dataProvider = {
     },
     getOne: (resource, params) =>
         httpClient(`${BackendURL}/${resource}/${params.id}`).then(({ json }) => ({
-            data: json,
+            data: { ...params.data, id: json.id },
         })),
 
     update: (resource, params) =>
