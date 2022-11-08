@@ -16,6 +16,10 @@ const dataProvider = {
             total: parseInt(headers.get('X-Total-Count').split('/').pop(), 10)
         }));
     },
+    getOne: (resource, params) =>
+        httpClient(`${BackendURL}/${resource}/${params.id}`).then(({ json }) => ({
+            data: json,
+        })),
 
     update: (resource, params) =>
         httpClient(`${BackendURL}/${resource}/update/${params.id}`, {

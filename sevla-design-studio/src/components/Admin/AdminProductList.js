@@ -12,6 +12,7 @@ const ProductsList = (props) => {
         <>
             <List {...props}>
                 <Datagrid>
+                    <TextField source='_id' />
                     <TextField source='ProductName' />
                     <TextField source='ProductDescription' />
                     <TextField source='ProductPrice' />
