@@ -74,3 +74,24 @@ form button:active {
   background-color: rgba(187, 138, 187);;
   border-color: #000000;
 }
+
+.action a {
+  text-align: center;
+  display:block;
+  width: 100%;
+  cursor: pointer;
+  text-decoration: none;
+  font: inherit;
+  background: plum;
+  color: #fff;
+  border: 1px solid rgba(187, 138, 187);
+  padding: 0.25rem 2rem;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+.action a:hover {
+  background-color: rgba(187, 138, 187);;
+  border-color: #000000;
+}

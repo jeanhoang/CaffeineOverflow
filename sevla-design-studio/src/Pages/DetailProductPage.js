@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import CartContext from '../store/cart-context';
 import ItemForm from '../components/Products/Items/ItemForm';
@@ -51,8 +52,8 @@ const DetailProductPage = () => {
           <div>
             <ItemForm id={ProductID} onAddToCart={addToCartHandler} />
           </div>
-          <form>
-            <button onClick={() => push("/shopping")}>Go back</button>
+          <form className={classes.action}>
+            <Link to='/shopping'>Go back</Link>
           </form>
         </div>
       </div>
