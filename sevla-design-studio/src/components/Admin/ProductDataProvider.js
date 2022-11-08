@@ -24,7 +24,7 @@ const dataProvider = {
         }).then(({ json }) => ({ data: json })),
 
     create: (resource, params) =>
-        httpClient(`${BackendURL}/add/${resource}`, {
+        httpClient(`${BackendURL}/${resource}/add`, {
             method: 'POST',
             body: JSON.stringify(params.data),
         }).then(({ json }) => ({
