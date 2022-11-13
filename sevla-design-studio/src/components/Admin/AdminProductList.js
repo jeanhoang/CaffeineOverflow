@@ -7,12 +7,12 @@ import {
     DeleteButton
 } from 'react-admin';
 
+
 const ProductsList = (props) => {
     return (
         <>
             <List {...props}>
                 <Datagrid>
-                    <TextField source='_id' />
                     <TextField source='ProductName' />
                     <TextField source='ProductDescription' />
                     <TextField source='ProductPrice' />
