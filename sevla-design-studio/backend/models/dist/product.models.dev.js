@@ -25,7 +25,7 @@ var productSchema = new schema({
   },
   ProductSize: {
     type: String,
-    required: true
+    required: false
   },
   ProductType: {
     type: String,

@@ -18,7 +18,7 @@ const productSchema = new schema({
     },
     ProductLongDescription: {
         type: String,
-        required: false
+        required: true
       },
     ProductPrice: {
         type: Number,
@@ -30,7 +30,7 @@ const productSchema = new schema({
     },
     ProductType: {
         type: String,
-        required: false
+        required: true
     },
     ProductQuantity: {
         type: String,
@@ -39,7 +39,7 @@ const productSchema = new schema({
     },
     ProductImg: {
         type: Array,
-        required: false
+        required: true
     }
 },{
     timestamps: true,
