@@ -3,26 +3,8 @@
 // Import the required dependecies
 var router = require('express').Router();
 
-var Product = require('../models/product.models'); // GET method for getting all the products
+var Product = require('../models/product.models'); // POST method for adding a new product
 
-
-router.route('/').get(function (req, res) {
-  Product.find().then(function (products) {
-    return res.json(products);
-  })["catch"](function (err) {
-    return res.status(400).json('Error: ' + err);
-  });
-}); // GET method for finding an specific product
-
-router.route('/:ProductName').get(function (req, res) {
-  Product.find({
-    ProductName: req.params['ProductName']
-  }).then(function (product) {
-    return res.json(product);
-  })["catch"](function (err) {
-    return res.status(400).json('Error: ' + err);
-  });
-}); // POST method for adding a new product
 
 router.route('/add').post(function _callee(req, res) {
   var ProductName, ProductDescription, ProductLongDescription, ProductPrice, ProductSize, ProductType, ProductQuantity, ProductImg, newProduct;
@@ -62,10 +44,39 @@ router.route('/add').post(function _callee(req, res) {
       }
     }
   });
-}); // POST method for deleting an specific product
+}); // GET method for getting all the products
 
-router.route('/delete/:ProductName').post(function (req, res) {
-  Product.deleteOne({
+router.route('/').get(function _callee2(req, res) {
+  var total;
+  return regeneratorRuntime.async(function _callee2$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return regeneratorRuntime.awrap(Product.count({}));
+
+        case 2:
+          total = _context2.sent;
+          res.set({
+            'X-Total-Count': total,
+            'Access-Control-Expose-Headers': 'X-Total-Count'
+          });
+          Product.find().then(function (products) {
+            return res.json(products);
+          })["catch"](function (err) {
+            return res.status(400).json('Error: ' + err);
+          });
+
+        case 5:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  });
+}); // GET method for finding an specific product
+
+router.route('/:ProductName').get(function (req, res) {
+  Product.find({
     ProductName: req.params['ProductName']
   }).then(function (product) {
     return res.json(product);
@@ -74,11 +85,11 @@ router.route('/delete/:ProductName').post(function (req, res) {
   });
 }); // PUT method for updating a product
 
-router.route('/update/:ProductName').put(function _callee2(req, res) {
+router.route('/update/:ProductName').put(function _callee3(req, res) {
   var ProductName, ProductDescription, ProductLongDescription, ProductPrice, ProductSize, ProductType, ProductQuantity, ProductImg;
-  return regeneratorRuntime.async(function _callee2$(_context2) {
+  return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
-      switch (_context2.prev = _context2.next) {
+      switch (_context3.prev = _context3.next) {
         case 0:
           try {
             ProductName = req.body.ProductName;
@@ -113,9 +124,31 @@ router.route('/update/:ProductName').put(function _callee2(req, res) {
 
         case 1:
         case "end":
-          return _context2.stop();
+          return _context3.stop();
       }
     }
+  });
+}); // POST method for deleting an specific product
+
+router.route('/delete/:ProductName')["delete"](function (req, res) {
+  Product.deleteOne({
+    ProductName: req.params['ProductName']
+  }).then(function (product) {
+    return res.json(product);
+  })["catch"](function (err) {
+    return res.status(400).json('Error: ' + err);
+  });
+}); // POST method for deleting many products
+
+router.route('/deleteMany')["delete"](function (req, res) {
+  Product.deleteMany({
+    ProductName: {
+      $in: req.body.id
+    }
+  }).then(function (product) {
+    return res.json(product);
+  })["catch"](function (err) {
+    return res.status(400).json('Error: ' + err);
   });
 }); // Export the router to the module
 
