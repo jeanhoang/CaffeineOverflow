@@ -17,7 +17,7 @@ var productSchema = new schema({
   },
   ProductLongDescription: {
     type: String,
-    required: true
+    required: false
   },
   ProductPrice: {
     type: Number,
@@ -25,11 +25,11 @@ var productSchema = new schema({
   },
   ProductSize: {
     type: String,
-    required: true
+    required: false
   },
   ProductType: {
     type: String,
-    required: true
+    required: false
   },
   ProductQuantity: {
     type: String,

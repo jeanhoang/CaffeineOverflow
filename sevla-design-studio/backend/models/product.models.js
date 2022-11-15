@@ -39,7 +39,7 @@ const productSchema = new schema({
     },
     ProductImg: {
         type: Array,
-        required: false
+        required: true
     }
 },{
     timestamps: true,
