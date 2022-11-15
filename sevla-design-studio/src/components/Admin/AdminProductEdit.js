@@ -30,7 +30,7 @@ const ProductsEdit = () => {
         <Edit sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 'auto' }}>
             <SimpleForm toolbar={<PostCreateToolbar />} sx={{ width: 800, alignItems: 'center', display: 'flex', padding: 'auto' }}>
                 <TextInput source="ProductName" validate={validateTextInput} sx={{ width: 500 }} />
-                <TextInput source="ProductDescription" validate={validateTextInput} sx={{ width: 500 }} />
+                <TextInput source="ProductDescription" label="Product short description" validate={validateTextInput} sx={{ width: 500 }} />
                 <TextInput multiline source="ProductLongDescription" validate={validateLongTextInput} sx={{ width: 500 }} />
                 <TextInput source="ProductPrice" validate={validateNum} sx={{ width: 150 }} />
                 <TextInput source="ProductSize" helperText="Optional field." sx={{ width: 150 }} />
