@@ -36,7 +36,7 @@ const ProductsEdit = () => {
                 <TextInput source="ProductSize" helperText="Optional field." sx={{ width: 150 }} />
                 <TextInput source="ProductType" validate={validateTextInput} sx={{ width: 150 }} />
                 <TextInput source="ProductQuantity" validate={validateNum} sx={{ width: 150 }} />
-                <TextInput multiline source="ProductImg" type="url" helperText="Enter the url to an image." validate={validateLongTextInput} sx={{ width: 770 }} />
+                <TextInput multiline source="ProductImg" type="url" label="Product image" helperText="Enter the url to an image." validate={validateLongTextInput} sx={{ width: 770 }} />
             </SimpleForm>
         </Edit>
     )
