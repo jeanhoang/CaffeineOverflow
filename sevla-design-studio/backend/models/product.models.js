@@ -30,7 +30,7 @@ const productSchema = new schema({
     },
     ProductType: {
         type: String,
-        required: false
+        required: true
     },
     ProductQuantity: {
         type: String,
