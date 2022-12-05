@@ -1,5 +1,6 @@
 import React from 'react';
 import { Edit, SimpleForm, TextInput, Toolbar, SaveButton, minValue, maxValue, maxLength } from 'react-admin';
+import BackButton from './BackButton';
 
 //Ensure all input fields are required 
 const required = (message = 'Required') =>
@@ -22,6 +23,7 @@ const validateNum = [required(), number(), minValue(0), maxValue(99999)];
 const PostCreateToolbar = props => (
     <Toolbar {...props}>
         <SaveButton sx={{ width: 750 }} />
+        <BackButton>Cancel</BackButton>
     </Toolbar>
 );
 
