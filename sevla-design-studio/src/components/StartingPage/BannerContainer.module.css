@@ -14,9 +14,15 @@
     font-size: 20px;
 }
 
+.banner-product p{
+    font-size: 'Dancing-Script';
+}
+
 .banner-container h3 {
     font-size: 4rem;
     margin-top: 4px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 5em;
 }
 
 .banner-container h1 {
@@ -41,7 +47,7 @@
 
 .desc p {
     color: #330c62;
-    font-weight: 100;
+    font-weight: bold;
     text-align: end;
 }
 
@@ -51,4 +57,5 @@
     font-size: 24px;
     color: #080a52;
     align-self: flex-end;
+    font-family: 'Dancing-Script', cursive;
 }

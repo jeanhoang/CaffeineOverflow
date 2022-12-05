@@ -5,6 +5,7 @@ const BannerContainer = () => {
   return (
     <div className={classes['banner-container']}>
         <div className={classes['banner-product']}>
+            <br></br>
             <p>T'is the season</p>
             <h3>Happy Holiday!</h3>
         </div>

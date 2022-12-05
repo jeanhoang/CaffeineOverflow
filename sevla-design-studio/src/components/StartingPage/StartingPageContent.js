@@ -1,9 +1,9 @@
 import classes from './StartingPageContent.module.css';
-import backgroundImage from '../../assets/background.png';
 import BannerContainer from './BannerContainer';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import HomeProduct from './HomeProduct';
+
+import { Link } from "react-router-dom";
 
 
 
@@ -12,23 +12,33 @@ const StartingPageContent = () => {
   //Initializing product list
   const [productList, setProductList] = useState([]);
 
-  //API to retrieve product list from backend
+  //API to retrieve pro nduct list from backend
   const getProductListAPI = process.env.REACT_APP_GET_ALL_PRODUCTS_API;
 
   //Calling getProductList() function
   useEffect(() => getProductList(), []);
+
 
   //A function to fetch data from the backend using axios
   const getProductList = () => {
     axios
       .get(getProductListAPI)
       .then(response => {
-        console.log(response.data)
-        setProductList(response.data);
+       // console.log(response.data)
+       setProductList(response.data);
       }).catch(error => {
         console.log(error);
       })
   }
+
+  //Filter products based on ProductType = "Featured"
+  const filteredList = productList.filter((product) => 
+    product.ProductType === 'Featured'
+  );
+
+  const productLink = `/products/${filteredList.ProductName}`;
+
+  //Debug console.log(filteredList);
 
   return (
     <>
@@ -39,9 +49,18 @@ const StartingPageContent = () => {
       </div>
 
       <div className={classes['products-container']}>
-        {productList.map((product) => <HomeProduct key={product._id} product={product} /> )}
-      </div>
+        {filteredList.map(feature => (
+          <div className={classes['product-card']}>
+            <img src={feature.ProductImg} 
+              className={classes['product-image']}>
+            </img>
 
+            <p><Link to={productLink} state={feature} style={{textDecoration:'none'}}>{feature.ProductName}</Link></p>
+            <p className={classes['product-price']}>${feature.ProductPrice}</p>
+
+          </div>
+        ))}
+      </div> 
 
     </>
 
