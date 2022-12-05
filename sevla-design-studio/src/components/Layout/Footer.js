@@ -16,20 +16,26 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className={classes.content}>
-        <h3>Sevla Design Studio</h3>
-        <p>We offer a variety of personalized items and customized products, handcrafted by us and delivered to you.</p>
+      <div className={classes['footer-container']}>
+        <div className={classes['banner-desc']}>
+          <div className={classes['left']}>
+            <h3>Sevla</h3>
+            <h3>Design Studio</h3>
+            <p className={classes.copyright}>Sevla Design Studio &copy; {currentYear}</p>
+            <p>We offer a variety of personalized items and customized products, handcrafted by us and delivered to you.</p>
+            <ul className={classes['socials']}>
+              <li><a href="https://www.instagram.com/sevla.studios/">{instagramIcon}</a></li>
+              <li><a href="https://www.facebook.com/Sevla.Studio">{facbookIcon}</a></li>
+              <li><a href="https://www.etsy.com/ca/shop/SevlaStudio">{etsyIcon}</a></li>
+            </ul>
+          </div>
+        </div>
 
-        <ul className={classes.socials}>
-          <li><a href="https://www.instagram.com/sevla.studios/">{instagramIcon}</a></li>
-          <li><a href="https://www.facebook.com/Sevla.Studio">{facbookIcon}</a></li>
-          <li><a href="https://www.etsy.com/ca/shop/SevlaStudio">{etsyIcon}</a></li>
-        </ul>
       </div>
 
-      <p className={classes.copyright}>Sevla Design Studio &copy; {currentYear}</p>
     </footer>
   )
 }
 
 export default Footer;
+

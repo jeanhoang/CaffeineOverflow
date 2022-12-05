@@ -1,0 +1,54 @@
+.banner-container {
+    padding: 100px 40px;
+    background-color: #dcdcdc;
+    border-radius: 15px;
+    position: relative;
+    height: 500px;
+    line-height: 0.9;
+    width: 100%;
+    background-image: url('../../assets/christmas.jpg');
+    color: #CC313D;
+}
+
+.banner-container .banner-product {
+    font-size: 20px;
+}
+
+.banner-container h3 {
+    font-size: 4rem;
+    margin-top: 4px;
+}
+
+.banner-container h1 {
+    color: white;
+    font-size: 10em;
+    margin-left: -20px;
+    text-transform: uppercase;
+}
+
+
+.desc {
+    position: absolute;
+    right: 10%;
+    bottom: 5%;
+    width: 300px;
+    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    color: #324d67;
+
+}
+
+.desc p {
+    color: #330c62;
+    font-weight: 100;
+    text-align: end;
+}
+
+.desc h5 {
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 24px;
+    color: #080a52;
+    align-self: flex-end;
+}

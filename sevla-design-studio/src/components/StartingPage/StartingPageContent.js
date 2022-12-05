@@ -1,24 +1,50 @@
 import classes from './StartingPageContent.module.css';
 import backgroundImage from '../../assets/background.png';
+import BannerContainer from './BannerContainer';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import HomeProduct from './HomeProduct';
+
+
 
 const StartingPageContent = () => {
 
-  return (
-    <section className={classes.starting}>
-      <div className={classes.content} style={{
-        background: `url(${backgroundImage})`,
-        height: '100%',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
-      }}>
+  //Initializing product list
+  const [productList, setProductList] = useState([]);
 
-        <div className={classes.center}>
-          <h1>Coming Soon</h1>
-          <h4>Our website is currently under construction. Follow us on social media to stay updated!</h4>
-        </div>
+  //API to retrieve product list from backend
+  const getProductListAPI = process.env.REACT_APP_GET_ALL_PRODUCTS_API;
+
+  //Calling getProductList() function
+  useEffect(() => getProductList(), []);
+
+  //A function to fetch data from the backend using axios
+  const getProductList = () => {
+    axios
+      .get(getProductListAPI)
+      .then(response => {
+        console.log(response.data)
+        setProductList(response.data);
+      }).catch(error => {
+        console.log(error);
+      })
+  }
+
+  return (
+    <>
+      <BannerContainer/>
+      <div className={classes['products-heading']}>
+        <h2>Best Selling Products</h2>
+        <p>Where your customization dreams come true</p>
       </div>
-    </section >
+
+      <div className={classes['products-container']}>
+        {productList.map((product) => <HomeProduct key={product._id} product={product} /> )}
+      </div>
+
+
+    </>
+
   );
 };
 

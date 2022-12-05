@@ -11,6 +11,7 @@ import Footer from './Footer'
 import Cart from '../Cart/Cart';
 import CartProvider from '../../store/CartProvider';
 
+
 const Layout = (props) => {
 
   const location = useLocation();
@@ -43,7 +44,7 @@ const Layout = (props) => {
           <Header onShowCart={showCartHandler} />
           <main>{props.children}</main>
         </CartProvider>
-        <Footer />
+        <Footer /> 
       </Fragment>
     );
   };
