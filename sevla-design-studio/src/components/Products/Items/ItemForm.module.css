@@ -1,5 +1,5 @@
 .form {
-  text-align: right;
+  text-align: center;
 }
 
 .form button {
@@ -8,9 +8,11 @@
   background-color: #8a2b06;
   border: 1px solid #8a2b06;
   color: white;
-  padding: 0.25rem 2rem;
+  padding: 0.25r;
   border-radius: 20px;
   font-weight: bold;
+  width: 150px;
+  height: 40px;
 }
 
 .form button:hover,

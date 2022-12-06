@@ -40,7 +40,7 @@ const Item = (props) => {
         <h3><Link to={productLink} state={props.product} style={{ textDecoration: 'none' }}>{props.product.ProductName}</Link></h3>
         <div className={classes.description}>{props.product.ProductDescription}</div>
         <div className={classes.price}>{formattedPrice}</div>
-        <img src={props.product.ProductImg} alt={props.product.ProductName} width="250" />
+        <img className={classes.image} src={props.product.ProductImg} alt={props.product.ProductName} width="250" />
       </div>
       <div>
         <ItemForm id={props.product._id} onAddToCart={addToCartHandler} />

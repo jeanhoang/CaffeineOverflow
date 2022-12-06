@@ -56,6 +56,8 @@ const StartingPageContent = () => {
             </img>
 
             <p><Link to={productLink} state={feature} style={{textDecoration:'none'}}>{feature.ProductName}</Link></p>
+            <br></br>
+            <p className={classes['short-desc']}>{feature.ProductDescription}</p>
             <p className={classes['product-price']}>${feature.ProductPrice}</p>
 
           </div>
