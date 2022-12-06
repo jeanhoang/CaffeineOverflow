@@ -17,6 +17,7 @@ const AboutPage = () => {
           </div>
           <div className={classes['about-text']}>
             <h1>My Story</h1>
+            <br></br>
             <p>After taking my maternity leave, I was looking for customized items
               for my son: Kairo. However, no matter how hard I searched,
               there are no personalized items with my son's name.
@@ -26,6 +27,7 @@ const AboutPage = () => {
             <br></br><br></br><br></br>
             <div className={classes['social-media']}>
               <h2>Follow Us</h2>
+              <br></br>
               <a href='https://www.facebook.com/Sevla.Studio/'>
                 <AiFillFacebook size={50}/>
               </a>
